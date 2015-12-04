@@ -124,8 +124,12 @@
         attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
     })]);
    /* Overlay Layers */
+       $.getJSON('data/bikeped.js', function(data) {
+        stations.addData(data);
+        map.addLayer(stationsLayer);
+    });
 
-    var DVRPC = L.geoJson(null, {
+  var DVRPC = L.geoJson(null, {
         style: {
             stroke: true,
             fillColor: 'none',
@@ -137,7 +141,7 @@
             clickable: false
         },
     });
-    $.getJSON("data/COUNTY_DVRPC.js", function(data) {
+    $.getJSON("data/cnty.js", function(data) {
         DVRPC.addData(data);
     });
 
@@ -171,7 +175,16 @@
         updatepie(bikepeddata);
     }
 
-    var highlight = L.geoJson(null);
+    var highlight = L.geoJson(null,{
+        onEachFeature: function(feature, layer) { 
+            if (feature.properties) {
+                layer.bindLabel(feature.properties.Name, {
+                    className: 'leaflet-label'
+                });
+            }
+        },
+    });
+    
     var highlightStyle = {
         stroke: false,
         fillColor: "#00FFFF",
@@ -213,10 +226,6 @@
 
             }
         },
-    });
-    $.getJSON('data/bikeped.js', function(data) {
-        stations.addData(data);
-        map.addLayer(stationsLayer);
     });
 
     map = L.map("map", {
@@ -287,15 +296,7 @@
     function identify(e) {
         var layer = e.target;
         var props = layer.feature.properties;
-
-    //    var content2 = "<div class='list-group-item'><b>Station Name</b><br>" + (props.Name)
-            //       +"<div class='labelfield2'><b>Date Installed: </b>"+ (props.INSTALL)
-    //        + "<br><br><div class='list-group-item'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" 
-    //        + numeral(props.TT_BIKE).format('0,0') 
-    //        + "<br><br><div class='list-group-item'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" 
-    //        + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" 
-    //        + numeral(props.TT_ALL).format('0,0') + "</div>"
-        var content3 = "<div class='panel panel-primary'>"
+        var content2 = "<div class='panel panel-primary'>"
                     +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
                     +"<div class='panel-body'>"
                             +"<div class='mi-upper-total'>"
@@ -340,30 +341,29 @@
                        +"</div>"
                        +"</div>"
 
-       var content2 = "<div class='panel panel-primary'>"
-                    +"<div class='panel-heading'>"
-                    +"<h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
-                    +"<div class='panel-body'>"
-                    +"<li class='list-group-item'>Average All Monthly: <B>" + (props.AVE_ALLm) +"</B></li>" 
-                    +"<li class='list-group-item'>Average All Daily: " + (props.AVE_ALLd) +"</li>" 
-                    +"<li class='list-group-item'>Average All Hourly: "+ (props.AVE_ALLhr) +"</li>"  
-                    +"<hr>"
-                    +"<li class='list-group-item'>Average Bike Monthly: " + (props.AVE_BIKEm) +"</li>" 
-                    +"<li class='list-group-item'>Average Bike Daily: " + (props.AVE_BIKEd) +"</li>" 
-                    +"<li class='list-group-item'>Average Bike Hourly: "+ (props.AVE_BIKEhr) +"</li>"  
-                    +"<hr>"
-                    +"<li class='list-group-item'>Average Pedestrian Monthly: " + (props.AVE_PEDm) +"</li>" 
-                    +"<li class='list-group-item'>Average Pedestrian  Daily: " + (props.AVE_PEDd) +"</li>" 
-                    +"<li class='list-group-item'>Average Pedestrian  Hourly: "+ (props.AVE_PEDhr) +"</li>"  
-                    +"</div>"    
-                    +"</div>"  
+   //    var content2 = "<div class='panel panel-primary'>"
+   //                 +"<div class='panel-heading'>"
+   //                 +"<h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
+   //                 +"<div class='panel-body'>"
+   //                 +"<li class='list-group-item'>Average All Monthly: <B>" + (props.AVE_ALLm) +"</B></li>" 
+   //                 +"<li class='list-group-item'>Average All Daily: " + (props.AVE_ALLd) +"</li>" 
+   //                 +"<li class='list-group-item'>Average All Hourly: "+ (props.AVE_ALLhr) +"</li>"  
+   //                 +"<hr>"
+   //                 +"<li class='list-group-item'>Average Bike Monthly: " + (props.AVE_BIKEm) +"</li>" 
+   //                 +"<li class='list-group-item'>Average Bike Daily: " + (props.AVE_BIKEd) +"</li>" 
+   //                 +"<li class='list-group-item'>Average Bike Hourly: "+ (props.AVE_BIKEhr) +"</li>"  
+   //                 +"<hr>"
+   //                 +"<li class='list-group-item'>Average Pedestrian Monthly: " + (props.AVE_PEDm) +"</li>" 
+   //                 +"<li class='list-group-item'>Average Pedestrian  Daily: " + (props.AVE_PEDd) +"</li>" 
+    //                +"<li class='list-group-item'>Average Pedestrian  Hourly: "+ (props.AVE_PEDhr) +"</li>"  
+    //                +"</div>"    
+    //                +"</div>"  
         
 
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
-            //       +"<div class='labelfield2'><b>Date Installed: </b>"+ (props.INSTALL)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
-        document.getElementById('datainfo').innerHTML = content3;
+        document.getElementById('datainfo').innerHTML = content2;
         document.getElementById('table_data').innerHTML = content;
     };
 
