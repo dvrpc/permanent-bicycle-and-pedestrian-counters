@@ -295,6 +295,50 @@
     //        + "<br><br><div class='list-group-item'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" 
     //        + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" 
     //        + numeral(props.TT_ALL).format('0,0') + "</div>"
+        var content3 = "<div class='panel panel-primary'>"
+                    +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
+                    +"<div class='panel-body'>"
+                            +"<div class='mi-upper-total'>"
+                            +"<div class='row'>"
+                            +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
+                            +"<div id='mi-foreign-icon' class='mi-icons mi-center'>"
+                            +"<i class='glyphicon glyphicon-calendar'></i>"
+                            +"</div>"
+                            +"</div>"
+                            +"<div class='col-lg-7 col-sm-8 col-xs-7 mi-right-stats'>"
+                            +"<div id='mi-foreign-value'>"+ (props.AVE_ALLm)+"</div>"
+                            +"<div class='mi-total-text'>monthly</div>"
+                            +"</div>"
+                            +"</div>"
+                            +"</div>"
+                            +"<div class='mi-upper-total'>"
+                            +"<div class='row'>"
+                            +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
+                            +"<div id='mi-foreign-icon' class='mi-icons mi-center'>"
+                            +"<i class='glyphicon glyphicon-list-alt'></i>"
+                            +"</div>"
+                            +"</div>"
+                            +"<div class='col-lg-7 col-sm-8 col-xs-7 mi-right-stats'>"
+                            +"<div id='mi-foreign-value'>"+ (props.AVE_ALLd)+"</div>"
+                            +"<div class='mi-total-text'>daily</div>"
+                            +"</div>"
+                            +"</div>"
+                            +"</div>"
+                             +"<div class='mi-upper-total'>"
+                            +"<div class='row'>"
+                            +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
+                            +"<div id='mi-foreign-icon' class='mi-icons mi-center'>"
+                            +"<i class='glyphicon glyphicon-time'></i>"
+                            +"</div>"
+                            +"</div>"
+                            +"<div class='col-lg-7 col-sm-8 col-xs-7 mi-right-stats'>"
+                            +"<div id='mi-foreign-value'>"+ (props.AVE_ALLhr)+"</div>"
+                            +"<div class='mi-total-text'>hourly</div>"
+                            +"</div>"
+                            +"</div>"
+                            +"</div>"
+                       +"</div>"
+                       +"</div>"
 
        var content2 = "<div class='panel panel-primary'>"
                     +"<div class='panel-heading'>"
@@ -312,13 +356,14 @@
                     +"<li class='list-group-item'>Average Pedestrian  Daily: " + (props.AVE_PEDd) +"</li>" 
                     +"<li class='list-group-item'>Average Pedestrian  Hourly: "+ (props.AVE_PEDhr) +"</li>"  
                     +"</div>"    
+                    +"</div>"  
         
 
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
             //       +"<div class='labelfield2'><b>Date Installed: </b>"+ (props.INSTALL)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
-        document.getElementById('datainfo').innerHTML = content2;
+        document.getElementById('datainfo').innerHTML = content3;
         document.getElementById('table_data').innerHTML = content;
     };
 
@@ -406,7 +451,7 @@
             updatestackedchart(bikeindata);
             */
             
-            // Will Mod
+            // Will TsayMod
             var props = layer.feature.properties;
                   // draws Bike on top
             updatestackedchart([

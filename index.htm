@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/leaflet_label.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
@@ -75,36 +76,64 @@
           </div>
         </div>
       </div>
-          <!-- Start Panel Group -->
-                <div class="panel-group" style:"display: inline-block;" id="datainfo">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Major Regional Transportation Projects 
-                            </div>
-                            <div id="overlay-layers" class="panel-collapse collapse in">
-                                <div class="panel-body" style="padding: 0px 15px;">
-                                  <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="overlayLayers" id="pr_road" z-index="3" checked>
-                                            <img src='img/signs/rdf/rdf.png' style="margin-bottom:5px" >&nbsp;Roadway System Preservation
-                                        </label>
-                                    </div>   
-                                     <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="overlayLayers" id="pr_transit" z-index="3" checked>
-                                            <img src='img/signs/pr_tr.png' width='28' height='28'>&nbsp;Transit System Preservation
-                                        </label>
+   
+      <!-- Data panel for annual activity indicators -->
+ <!--  
+        <div id="mi-annual-activity" class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0">
+            <div class="panel panel-primary" >
+                <div class="panel-heading">
+                    <h4 class="panel-title"><span><i class="fa fa-edit white"></i>&nbsp;&nbsp;Regional Statistics</h4></span>
+                </div>
+                <div id="mi-trade-panel" class="panel-body">
+                      <div class="mi-upper-total">
+                            <div class="row">
+                                <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1 ">
+                                    <div id="mi-rank-icon" class="mi-icons mi-center">
+                                        <i class="glyphicon glyphicon-calendar"></i>
                                     </div>
-                                    <div id="datainfo"></div> 
+                                </div>
+                                <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
+                                    <div id="mi-total-trade-value">77,777</div>
+                                    <div class="mi-total-text">monthly</div>
+                                </div>
+                            </div>                    
+                        <div class="mi-upper-total">
+                            <div class="row">
+                                <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1 ">
+                                    <div id="mi-total-icon" class="mi-icons mi-center">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
+                                    <div id="mi-total-trade-value">464</div>
+                                    <div class="mi-total-text">daily</div>
                                 </div>
                             </div>
                         </div>
+                        <div class="mi-upper-total">
+                            <div class="row">
+                                <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1  ">
+                                    <div id="mi-foreign-icon" class="mi-icons mi-center">
+                                        <i class="glyphicon glyphicon-time"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
+                                    <div id="mi-foreign-value">67</div>
+                                    <div class="mi-total-text">hourly</div>
+                                </div>
+                            </div>
+                        </div>
+                 -->       
+                    <!--    <div class="mi-upper-highlight-row mi-bottom-divider">
+                            <span id="mi-foreign-percent" class="mi-percent">0.0%</span> regional <span class="mi-growth">change</span> vs. <span id="mi-foreign-national" class="mi-percent">0.0%</span> national <span class="mi-growth">change</span>
+                        </div> -->
+         <!--             
                     </div>
-              
-               <!-- End Panel Group -->  
-
-
-    <!--  <div id="datainfo"></div> -->
+                </div>
+            </div>                             
+        </div> -->       
+        <!--End MI Panel Group -->
+        <div id="datainfo"></div> 
       
         <div id="map"></div>
   
@@ -150,102 +179,43 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Bike and Ped Count Info</h4>
+            <h4 class="modal-title">Permanent Bicycle and Pedestrian Counts</h4>
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
               <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
               <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>
               <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Metadata <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#boroughs-tab" data-toggle="tab">Boroughs</a></li>
-                  <li><a href="#subway-lines-tab" data-toggle="tab">Subway Lines</a></li>
-                  <li><a href="#theaters-tab" data-toggle="tab">Theaters</a></li>
-                  <li><a href="#museums-tab" data-toggle="tab">Museums</a></li>
-                </ul>
-              </li>
             </ul>
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>A simple, responsive template for building web mapping applications with <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>. Open source, MIT licensed, and available on <a href="https://github.com/bmcbride/bootleaf" target="_blank">GitHub</a>.</p>
-                <div class="panel panel-primary">
-                  <div class="panel-heading">Features</div>
-                  <ul class="list-group">
-                    <li class="list-group-item">Fullscreen mobile-friendly map template with responsive navbar and modal placeholders</li>
-                    <li class="list-group-item">jQuery loading of external GeoJSON files</li>
-                    <li class="list-group-item">Logical multiple layer marker clustering via the <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">leaflet marker cluster plugin</a></li>
-                    <li class="list-group-item">Elegant client-side multi-layer feature search with autocomplete using <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a></li>
-                    <li class="list-group-item">Responsive sidebar feature list synced with map bounds, which includes sorting and filtering via <a href="http://listjs.com/" target="_blank">list.js</a></li>
-                    <li class="list-group-item">Marker icons included in grouped layer control via the <a href="https://github.com/ismyrnow/Leaflet.groupedlayercontrol" target="_blank">grouped layer control plugin</a></li>
-                  </ul>
-                </div>
+                <p>This map displays permanent pedestrian and bicycle count data within the DVRPC region. Review detailed monthly count information, average amounts by mode, and use the detailed search tool to view and export count data on a daily, hourly and 15 minute intervals.</p>
               </div>
               <div id="disclaimer" class="tab-pane fade text-danger">
                 <p>The data provided on this site is for informational and planning purposes only.</p>
-                <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
+                <p>While every effort is made on the part of DVRPC to provide valid and current information, DVRPC makes no representation or warranties, express or implied, about the validity of this information and is not to be held responsible for errors in data obtained from this website.</p> 
               </div>
               <div class="tab-pane fade" id="contact">
-                <form id="contact-form">
-                  <div class="well well-sm">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="first-name">First Name:</label>
-                          <input type="text" class="form-control" id="first-name">
-                        </div>
-                        <div class="form-group">
-                          <label for="last-name">Last Name:</label>
-                          <input type="text" class="form-control" id="last-email">
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Email:</label>
-                          <input type="text" class="form-control" id="email">
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" rows="8" id="message"></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <p>
-                          <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="tab-pane fade" id="boroughs-tab">
-                <p>Borough data courtesy of <a href="http://www.nyc.gov/html/dcp/pdf/bytes/nybbwi_metadata.pdf" target="_blank">New York City Department of City Planning</a></p>
-              </div>
-              <div class="tab-pane fade" id="subway-lines-tab">
-                <p><a href="http://spatialityblog.com/2010/07/08/mta-gis-data-update/#datalinks" target="_blank">MTA Subway data</a> courtesy of the <a href="http://www.urbanresearch.org/about/cur-components/cuny-mapping-service" target="_blank">CUNY Mapping Service at the Center for Urban Research</a></p>
-              </div>
-              <div class="tab-pane fade" id="theaters-tab">
-                <p>Theater data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Theaters/kdu2-865w" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
-              </div>
-              <div class="tab-pane fade" id="museums-tab">
-                <p>Museum data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Museums-and-Galleries/sat5-adpb" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
+                <p>
+                    <b>Office of Travel Monitoring</b><br/>
+                    Scott Brady, Manager <br/>
+                    (215) 238-2814 <br/>
+                    <a href="mailto:sbrady@dvrpc.org">sbrady@dvrpc.org </a> <br/>
+                <br/>
+                    Charles Henry, Traffic Counting Supervisor  <br/>
+                    (215) 238-2895 <br/>
+                    <a href="mailto:chenry@dvrpc.org">chenry@dvrpc.org</a> <br/>
+                <br/>
+                <b>Office of Environmental Planning</b><br/>
+                    Shawn Megill Legendre, Senior Research Analyst <br/>
+                    (215) 238-2934 <br/>
+                    <a href="mailto:slegendre@dvrpc.org">slegendre@dvrpc.org </a> <br/>
+                <br/>
+                <b>DVRPC Main Number:</b> (215) 592-1800
+                </p>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-primary" id="feature-title"></h4>
-          </div>
-          <div class="modal-body" id="feature-info"></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
@@ -259,7 +229,7 @@
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title">
-              Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a>
+              Original bootleaft template developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a>
             </h4>
           </div>
           <div class="modal-body">
