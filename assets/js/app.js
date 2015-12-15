@@ -35,6 +35,8 @@
 
     $("#list-btn").click(function() {
         $('#sidebar').toggle();
+        $('#datainfo').toggleClass('col-sm-4 col-sm-6');
+        $('#map').toggleClass('col-sm-4 col-sm-6');
         map.invalidateSize();
         return false;
     });
@@ -44,16 +46,6 @@
         return false;
     });
 
-    $("#sidebar-toggle-btn").click(function() {
-        $("#sidebar").toggle();
-        map.invalidateSize();
-        return false;
-    });
-
-    $("#sidebar-hide-btn").click(function() {
-        $('#sidebar').hide();
-        map.invalidateSize();
-    });
 
     function sizeLayerControl() {
         $(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
