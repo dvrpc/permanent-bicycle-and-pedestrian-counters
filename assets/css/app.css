@@ -10,29 +10,18 @@ input[type="radio"], input[type="checkbox"] {
   margin: 0;
 }
 #sidebar {
-  width: 33%;
-  height: 70%;
-  max-width: 100%;
-  float: left;
   -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
 }
-#map {
-  width: 33%;
-  height: 70%;
-  display: inline-block; 
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-} 
-#datainfo{
-  height: 70%;
-  display: inline-block; 
-  width: 33%;
+#map, #sidebar, #datainfo, #datainfo .panel {
+  height: 100%;
 }
-#sidebar2 {
-  width: auto;
+#upper-panel{
+  height:60%;
+}
+#lower-panel {
   height: 40%;
-  max-width: 100%;
   background-color: black;
 }
 .navbar-fixed-top {
