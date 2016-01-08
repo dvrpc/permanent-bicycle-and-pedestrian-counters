@@ -22,7 +22,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 #lower-panel {
   height: 40%;
-  background-color: black;
+  background-color: #cccccc;
 }
 .navbar-fixed-top {
     height: 20px; /* Whatever you want. */
