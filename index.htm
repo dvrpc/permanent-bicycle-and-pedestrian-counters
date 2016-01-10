@@ -29,18 +29,18 @@
 
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
         <div class="navbar-header">
-          <div class="navbar-icon-container">
-            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
-            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
-          </div>
-              <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-10px 10px -10px 0;"/></a>
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-10px 10px -10px 0;"/></a>
               <img  style="margin:5px 0px 0px 0px" src="assets/img/bikeped_logo.png"/>   
               </span>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+       <!--   <ul id='landing' class="nav navbar-nav">
             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
             <li class="dropdown">
               <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
@@ -51,12 +51,35 @@
             </li>
             <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Station List</a></li>
           </ul>
+-->
+          <ul id='landing' class="nav navbar-nav">
+                <li><a href="#home" class='landingLink' data-tab='home' data-toggle="collapse" data-target=".navbar-collapse.in"><i class="dynico dynico-home"></i>&nbsp;&nbsp;Home</a></li>
+            
+                <li id='maplink' class='landingUI'><a href="#map" data-tab='map' data-toggle="collapse" data-target=".navbar-collapse.in"><i class="dynico dynico-map"></i>&nbsp;&nbsp;View Map</a></li>
+            </ul>
         </div><!--/.navbar-collapse -->
-      </div>
     </div>
 
-<!-- Start Main Body -->
-    <div id="container">
+    <div id='pFFlanding' class='landing fade in landtab-content landingUI'>
+            
+            <!--home tab-->
+                <div id ='home' class='tab-pane active in landing-content'style='color:#333333;'>
+                    <div class='center-block col-lg-9 col-md-10' style='float:none;'>
+                        <h3>Welcome to <i>PhillyFreightFinder, </i>the freight mapping and data platform for the Delaware Valley!</h3> 
+                    </div>
+                    <div class='center-block col-lg-9 col-md-10' style='float:none;'>
+                        <div class='col-md-6'>
+                            <p><i>PhillyFreightFinder</i> is a dynamic, web-based mapping application that pinpoints freight facilities and freight activity in the Philadelphia-Camden-Trenton region. In addition, this tool also highlights how the various freight system components intertwine and complement one another.</p>
+                            <p><i>PhillyFreightFinder</i> contains 20 individual layers and over 350 features of infrastructure and facilities that are organized into seven categories. These elements form the core of the region’s extraordinary freight network and services that link the region to the global economy.</p>
+                            <p><i>PhillyFreightFinder </i>is fully customizable, giving you-the user, the ability to easily control both the extent of the mapping window and the combination of layers to be displayed.</p>
+                        </div> 
+                    </div>
+                </div>   
+        </div>
+
+<!-- Start Map and Charts -->
+   <!--  <div id="container" class='tab-pane landing-content'> -->
+      <div class="row ocontent mapUI" id="container">
       <div id="upper-panel">
         <div id="sidebar" class="col-sm-4">
           <div class="sidebar-wrapper">
@@ -75,70 +98,12 @@
               </div>
             </div>
           </div>
-        </div> <!--close sidebar-->
-     
-        <!-- Data panel for annual activity indicators -->
-   <!--  
-          <div id="mi-annual-activity" class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0">
-              <div class="panel panel-primary" >
-                  <div class="panel-heading">
-                      <h4 class="panel-title"><span><i class="fa fa-edit white"></i>&nbsp;&nbsp;Regional Statistics</h4></span>
-                  </div>
-                  <div id="mi-trade-panel" class="panel-body">
-                        <div class="mi-upper-total">
-                              <div class="row">
-                                  <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1 ">
-                                      <div id="mi-rank-icon" class="mi-icons mi-center">
-                                          <i class="glyphicon glyphicon-calendar"></i>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
-                                      <div id="mi-total-trade-value">77,777</div>
-                                      <div class="mi-total-text">monthly</div>
-                                  </div>
-                              </div>                    
-                          <div class="mi-upper-total">
-                              <div class="row">
-                                  <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1 ">
-                                      <div id="mi-total-icon" class="mi-icons mi-center">
-                                          <i class="glyphicon glyphicon-list-alt"></i>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
-                                      <div id="mi-total-trade-value">464</div>
-                                      <div class="mi-total-text">daily</div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="mi-upper-total">
-                              <div class="row">
-                                  <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1  ">
-                                      <div id="mi-foreign-icon" class="mi-icons mi-center">
-                                          <i class="glyphicon glyphicon-time"></i>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
-                                      <div id="mi-foreign-value">67</div>
-                                      <div class="mi-total-text">hourly</div>
-                                  </div>
-                              </div>
-                          </div>
-                   -->       
-                      <!--    <div class="mi-upper-highlight-row mi-bottom-divider">
-                              <span id="mi-foreign-percent" class="mi-percent">0.0%</span> regional <span class="mi-growth">change</span> vs. <span id="mi-foreign-national" class="mi-percent">0.0%</span> national <span class="mi-growth">change</span>
-                          </div> -->
-           <!--             
-                      </div>
-                  </div>
-              </div>                             
-          </div> -->       
-          <!--End MI Panel Group -->
+        </div> <!--close sidebar-->      
+       
           <div id="datainfo" class="col-sm-4"></div> 
         
           <div id="map" class="col-sm-4"></div>
         </div>
-  
-
       <div id="lower-panel" style="overflow: scroll; overflow-x: hidden;">  
        
         <div class="col-sm-9 col-lg-9">
@@ -165,7 +130,7 @@
     </div>  
 </div>
 
-<!-- End Main Body -->
+<!-- End Map and Charts -->
     
     <div id="loading">
       <div class="loading-indicator">
@@ -280,5 +245,6 @@
     <script src="assets/js/numeral.js"></script>
     <script src="assets/js/leaflet.label.js"></script>
     <script src="assets/js/leaflet.viewcenter.js"></script>
+    <script type="text/javascript" src="assets/js/core.js"></script><!--core application functions -->
   </body>
 </html>
