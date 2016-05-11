@@ -599,16 +599,3 @@
 		display:table-cell!important
 	}
 }
-.landing {
-    z-index: 1029;
-    width: 100%;
-    overflow-y: auto;
-    display: block;
-    bottom: 34px;
-    position: absolute;
-    top: 50px;
-    padding-bottom: 20px;
-}
-.landtab-content > .tab-pane {
-    display: none;
-}
