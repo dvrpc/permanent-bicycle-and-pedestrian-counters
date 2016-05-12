@@ -288,9 +288,9 @@
     function identify(e) {
         var layer = e.target;
         var props = layer.feature.properties;
-        var content2 = "<div class='panel panel-primary'>"
-                    +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
-                    +"<div class='panel-body'>"
+        var content2 = //"<div class='panel panel-primary'>"
+                //    +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
+                    "<div class='panel-body'>"
                             +"<div class='mi-upper-total'>"
                             +"<div class='row'>"
                             +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
@@ -330,8 +330,8 @@
                             +"</div>"
                             +"</div>"
                             +"</div>"
-                       +"</div>"
-                       +"</div>"
+                    //   +"</div>"
+                   //    +"</div>"
 
    //    var content2 = "<div class='panel panel-primary'>"
    //                 +"<div class='panel-heading'>"
@@ -355,6 +355,9 @@
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
+        var content3 = "<div><h4 id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
+                       
+        document.getElementById('card').innerHTML = content3;        
         document.getElementById('datainfo').innerHTML = content2;
         document.getElementById('table_data').innerHTML = content;
     };
@@ -371,13 +374,23 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0, //null,
                 plotShadow: true,
-                height: 350,
-                width: 250,
+                height: 280,
+                width: 180,
                 colors: ['#e66101', '#5e3c99']
             },
             title: {
-                text: 'Total Count by Mode',
-                x: -20 //center   
+                text: 'Total Volume',
+                style: {fontSize:'14px',
+                fontWeight: 'bold'
+                }
+               // x: -20 //center   
+            },
+            subtitle: {
+                text: 'by mode',
+                style: {fontSize:'10px',
+                color: '#888888'
+                }
+              //  x: -20 //center   
             },
             plotOptions: {
                 pie: {
@@ -400,8 +413,8 @@
             legend: {
                 layout: 'horizontal',
                 verticalAlign: 'top',
-                x: -20,
-                y: 25
+               // x: -20
+                y: 35
             },
             tooltip: {
                 valueDecimals: 0,
