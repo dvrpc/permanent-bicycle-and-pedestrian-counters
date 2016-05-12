@@ -214,7 +214,7 @@
                 //    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
                 //  }
                 //   });
-                $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + layer.feature.properties.Name + '</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_BIKE).format('0,0') + '</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_PED).format('0,0') + '</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_ALL).format('0,0') + '</td></tr>');
+                $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + layer.feature.properties.Name + '</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_BIKE).format('0,0') + ' / '+numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_PED).format('0,0') +' / '+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_ALL).format('0,0') + '</td></tr>');
 
             }
         },
@@ -256,13 +256,13 @@
     });
     attributionControl.onAdd = function(map) {
         var div = L.DomUtil.create("div", "leaflet-control-attribution");
-        div.innerHTML = "<span class='hidden-xs'>Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | </span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
+        div.innerHTML = "<span class='hidden-xs'></span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
         return div;
     };
     map.addControl(attributionControl);
 
     var zoomControl = L.control.zoom({
-        position: "bottomright"
+        position: "topleft"
     }).addTo(map);
 
     /* Larger screens get expanded layer control and visible sidebar */
@@ -288,9 +288,9 @@
     function identify(e) {
         var layer = e.target;
         var props = layer.feature.properties;
-        var content2 = "<div class='panel panel-primary'>"
-                    +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
-                    +"<div class='panel-body'>"
+        var content2 = //"<div class='panel panel-primary'>"
+                //    +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
+                    "<div class='panel-body'>"
                             +"<div class='mi-upper-total'>"
                             +"<div class='row'>"
                             +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
@@ -330,33 +330,37 @@
                             +"</div>"
                             +"</div>"
                             +"</div>"
-                       +"</div>"
-                       +"</div>"
-
-   //    var content2 = "<div class='panel panel-primary'>"
-   //                 +"<div class='panel-heading'>"
-   //                 +"<h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
-   //                 +"<div class='panel-body'>"
-   //                 +"<li class='list-group-item'>Average All Monthly: <B>" + (props.AVE_ALLm) +"</B></li>" 
-   //                 +"<li class='list-group-item'>Average All Daily: " + (props.AVE_ALLd) +"</li>" 
-   //                 +"<li class='list-group-item'>Average All Hourly: "+ (props.AVE_ALLhr) +"</li>"  
-   //                 +"<hr>"
-   //                 +"<li class='list-group-item'>Average Bike Monthly: " + (props.AVE_BIKEm) +"</li>" 
-   //                 +"<li class='list-group-item'>Average Bike Daily: " + (props.AVE_BIKEd) +"</li>" 
-   //                 +"<li class='list-group-item'>Average Bike Hourly: "+ (props.AVE_BIKEhr) +"</li>"  
-   //                 +"<hr>"
-   //                 +"<li class='list-group-item'>Average Pedestrian Monthly: " + (props.AVE_PEDm) +"</li>" 
-   //                 +"<li class='list-group-item'>Average Pedestrian  Daily: " + (props.AVE_PEDd) +"</li>" 
-    //                +"<li class='list-group-item'>Average Pedestrian  Hourly: "+ (props.AVE_PEDhr) +"</li>"  
-    //                +"</div>"    
-    //                +"</div>"  
+                    //   +"</div>"
+                   //    +"</div>"
+        
+      /*      var content2 = "<div class='panel panel-primary'>"
+                    +"<div class='panel-heading'>"
+                    +"<h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
+                    +"<div class='panel-body'>"
+                    +"<li class='list-group-item'>Average All Monthly: <B>" + (props.AVE_ALLm) +"</B></li>" 
+                    +"<li class='list-group-item'>Average All Daily: " + (props.AVE_ALLd) +"</li>" 
+                    +"<li class='list-group-item'>Average All Hourly: "+ (props.AVE_ALLhr) +"</li>"  
+                    +"<hr>"
+                    +"<li class='list-group-item'>Average Bike Monthly: " + (props.AVE_BIKEm) +"</li>" 
+                    +"<li class='list-group-item'>Average Bike Daily: " + (props.AVE_BIKEd) +"</li>" 
+                 +"<li class='list-group-item'>Average Bike Hourly: "+ (props.AVE_BIKEhr) +"</li>"  
+                    +"<hr>"
+                    +"<li class='list-group-item'>Average Pedestrian Monthly: " + (props.AVE_PEDm) +"</li>" 
+                    +"<li class='list-group-item'>Average Pedestrian  Daily: " + (props.AVE_PEDd) +"</li>" 
+                    +"<li class='list-group-item'>Average Pedestrian  Hourly: "+ (props.AVE_PEDhr) +"</li>"  
+                    +"</div>"    
+                    +"</div>"  
+         */           
         
 
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
+        var content3 = (props.Name)
+                       
+        document.getElementById('card').innerHTML = content3;        
         document.getElementById('datainfo').innerHTML = content2;
-        document.getElementById('table_data').innerHTML = content;
+    //    document.getElementById('table_data').innerHTML = content;
     };
 
   //  Highcharts.setOptions({
@@ -371,14 +375,25 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0, //null,
                 plotShadow: true,
-                height: 350,
-                width: 250,
+                height: 280,
+             //   width: 180,
                 colors: ['#e66101', '#5e3c99']
             },
             title: {
-                text: 'Total Count by Mode',
-                x: -20 //center   
+              //  text: 'Total Volume',
+              text:null,
+                style: {fontSize:'14px',
+                fontWeight: 'bold'
+                }
+               // x: -20 //center   
             },
+         /*   subtitle: {
+                text: 'by mode',
+                style: {fontSize:'10px',
+                color: '#888888'
+                }
+              //  x: -20 //center   
+            }, */
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
@@ -399,9 +414,9 @@
             },
             legend: {
                 layout: 'horizontal',
-                verticalAlign: 'top',
-                x: -20,
-                y: 25
+                verticalAlign: 'bottom',
+               // x: -20
+                y: 0
             },
             tooltip: {
                 valueDecimals: 0,
@@ -435,30 +450,19 @@
            // resetHighlight();
             var layer = e.target;
             
-            /* ORIGINAL:
-            var props = layer.feature.properties;
-            pedindata = [props.PEDIN1,props.PEDIN2,props.PEDIN3,props.PEDIN4,props.PEDIN5,props.PEDIN6,props.PEDIN7,props.PEDIN8,props.PEDIN9,props.PEDIN10,props.PEDIN11,props.PEDIN12];
-            updatestackedchart(pedindata);
-            bikeindata = [props.BIKEIN1,props.BIKEIN2,props.BIKEIN3,props.BIKEIN4,props.BIKEIN5,props.BIKEIN6,props.BIKEIN7,props.BIKEIN8,props.BIKEIN9,props.BIKEIN10,props.BIKEIN11,props.BIKEIN12];
-            updatestackedchart(bikeindata);
-            */
-            
             // Will TsayMod
             var props = layer.feature.properties;
                   // draws Bike on top
             updatestackedchart([
                 [props.BIKEIN1,props.BIKEIN2,props.BIKEIN3,props.BIKEIN4,props.BIKEIN5,props.BIKEIN6,props.BIKEIN7,props.BIKEIN8,props.BIKEIN9,props.BIKEIN10,props.BIKEIN11,props.BIKEIN12],
                 [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
-                [props.PEDIN1,props.PEDIN2,props.PEDIN3,props.PEDIN4,props.PEDIN5,props.PEDIN6,props.PEDIN7,props.PEDIN8,props.PEDIN9,props.PEDIN10,props.PEDIN11,props.PEDIN12],
+           ])
+             updatestackedchart2([
+               [props.PEDIN1,props.PEDIN2,props.PEDIN3,props.PEDIN4,props.PEDIN5,props.PEDIN6,props.PEDIN7,props.PEDIN8,props.PEDIN9,props.PEDIN10,props.PEDIN11,props.PEDIN12],
                 [props.PEDOUT1,props.PEDOUT2,props.PEDOUT3,props.PEDOUT4,props.PEDOUT5,props.PEDOUT6,props.PEDOUT7,props.PEDOUT8,props.PEDOUT9,props.PEDOUT10,props.PEDOUT11,props.PEDOUT12],
             ])
         }
-
-        Highcharts.setOptions({
-            colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
-            // orange, purple
-        });
-        
+// colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
         function updatestackedchart(Values) {
         var options = {
             chart: {
@@ -467,13 +471,18 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:400
+                height:300,
+                backgroundColor: '#fef0d9'
             },
+            colors: 
+                ['#e66101','#fee0b6']
+            ,
             credits: {
                 enabled: false
             },
             title: {
-                text: 'Total Volume',
+              //  text: 'Bicycle Volume by Month',
+              text:null,
                 x: -20 //center
             },
             xAxis: {
@@ -483,7 +492,7 @@
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true,
+                        enabled: false,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                         style: {
                             textShadow: '0 0 3px black'
@@ -497,7 +506,7 @@
                     text: 'Total Volume'
                 },
                 stackLabels: {
-                    enabled: true,
+                    enabled: false,
                     style: {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -505,10 +514,10 @@
                 }
             },
             legend: {
-                align: 'right',
-                x: -30,
-                verticalAlign: 'top',
-                y: 25,
+                align: 'left',
+                x: 0,
+                verticalAlign: 'bottom',
+                y: 12,
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
@@ -524,21 +533,14 @@
             },
             series: [
                 {
-                    name:'Bike (in)',
+                    name:'East Bound',
                     data: []
                 },
                   {
-                    name:'Bike (out)',
-                    data: []
-                },
-                {
-                    name:'Ped (in)',
-                    data: []
-                },
-                   {
-                    name:'Ped (out)',
+                    name:'West Bound',
                     data: []
                 }
+               
             ]
         };
         
@@ -553,22 +555,107 @@
             bikeoutdata.push({
             y: Values[1][i]})
         }
+        
+        options.series[0].data = bikeindata;
+        options.series[1].data = bikeoutdata;
+        chart = new Highcharts.Chart(options)
+     //    console.log(pedindata);
+     //    console.log(bikeindata);
+     //    console.log(bikeindata);
+    }
+
+    function updatestackedchart2 (Values) {
+        var options = {
+            chart: {
+                renderTo: 'Monthly2',
+                type:'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,//null,
+                plotShadow: true,
+                height:300,
+                backgroundColor: '#f2f0f7'
+            },
+             colors: ['#5e3c99','#998ec3'],
+            credits: {
+                enabled: false
+            },
+            title: {
+            //   text: 'Pedestrian Volume by Month',
+              text:null,
+                x: -20 //center
+            },
+            xAxis: {
+                categories: [ 'Jan', 'Feb', 'March', 'April','May','June','July','August','September','October','November','December']
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 3px black'
+                        }
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Volume'
+                },
+                stackLabels: {
+                    enabled: false,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'left',
+                x: 0,
+                verticalAlign: 'bottom',
+                y: 12,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            series: [
+                {
+                    name:'East Bound',
+                    data: []
+                },
+                   {
+                    name:'West Bound',
+                    data: []
+                }
+            ]
+        };
+        
         pedindata = [];
-        for (var i = 0; i < Values[2].length; i++){
+        for (var i = 0; i < Values[0].length; i++){
             pedindata.push({
-            y: Values[2][i]})
+            y: Values[0][i]})
         }
           pedoutdata = [];
-        for (var i = 0; i < Values[3].length; i++){
+        for (var i = 0; i < Values[1].length; i++){
             pedoutdata.push({
-            y: Values[3][i]})
+            y: Values[1][i]})
         }
         // options.xAxis.categories = Values[0]['data']; 
         //    
-        options.series[0].data = bikeindata;
-        options.series[1].data = bikeoutdata;
-        options.series[2].data = pedindata;
-        options.series[3].data = pedoutdata;
+        options.series[0].data = pedindata;
+        options.series[1].data = pedoutdata;
         chart = new Highcharts.Chart(options)
      //    console.log(pedindata);
      //    console.log(bikeindata);

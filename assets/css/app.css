@@ -1,7 +1,7 @@
-html, body, #container{
+html, body{
   height: 100%;
   width: 100%;
-  overflow: show;
+  overflow: hidden;
 }
 body {
   padding-top: 50px;
@@ -9,20 +9,68 @@ body {
 input[type="radio"], input[type="checkbox"] {
   margin: 0;
 }
+#container{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  margin-top: 5px;
+}
 #sidebar {
   -webkit-transition: all 0.25s ease-out;
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
 }
-#map, #sidebar, #datainfo, #datainfo .panel {
+#sidebar, #datainfo, #datainfo .panel {
   height: 100%;
 }
-#upper-panel{
-  height:60%;
+.top-row {
+    height: 55%;
+    overflow-y: hidden;
 }
-#lower-panel {
-  height: 40%;
-  background-color: #cccccc;
+.bottom-row {
+    height: 45%;
+    overflow-y: hidden;
+}
+#map {
+  height:100%;
+  overflow: hidden;
+}
+#stationinfo{
+    overflow: auto;
+}
+.barchart{
+  height:100%;
+  width: 99%;
+}
+.piechart{
+  width:99%;
+}
+#card{
+  background-color: #888888;
+}
+#cardbikepanel{
+  border-color: #e34a33;
+  background-color:#fef0d9;
+}
+#cardbike{
+  background-color:#fc8d59;
+  border-color: #fc8d59;
+}
+.top-rowb {
+    height: 50%;
+margin-right: 2px;
+}
+.bottom-rowb {
+    height: 50%;
+    margin-right: 2px;
+}
+#cardpedpanel{
+  border-color: #756bb1;
+  background-color:#f2f0f7;
+}
+#cardped{
+  background-color: #756bb1;
+  border-color: #756bb1;
 }
 .navbar-fixed-top {
     height: 20px; /* Whatever you want. */
@@ -82,6 +130,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .table {
   margin-bottom: 0px;
+  font-size: 12px;
 }
 .navbar .navbar-brand {
   font-weight: bold;
@@ -196,10 +245,6 @@ input[type="radio"], input[type="checkbox"] {
   -o-transition: width .175s ease-in;
   transition: width .175s ease-in;
   }
-.barchart{
-  height:100%;
-  width: 100%;
-}
 /*
 .nopadding {
    padding: 0 !important;

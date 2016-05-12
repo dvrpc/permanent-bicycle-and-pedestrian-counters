@@ -4,11 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>DVRPC - Permanent Bicycle and Pedestrian Counts</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -19,12 +14,6 @@
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/leaflet_label.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
-    <link rel="icon" sizes="196x196" href="assets/img/favicon-196.png">
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
   </head>
 
   <body>
@@ -49,7 +38,6 @@
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li>
               </ul>
             </li>
-            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Station List</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -57,8 +45,9 @@
 
 <!-- Start Main Body -->
     <div id="container">
-      <div id="upper-panel">
-        <div id="sidebar" class="col-sm-4">
+    <!--   <div id="map" class="col-sm-3"></div> -->
+        <div id="sidebar" class="col-sm-5">
+          <div class="row top-row">
           <div class="sidebar-wrapper">
             <div class="panel panel-default" id="features">
     
@@ -66,8 +55,8 @@
                 <table class="table table-hover" id="feature-list">
                   <thead >
                       <th>Station</th>
-                      <th><img src="assets/img/bike_list.png"/> Bicycle</th>
-                      <th><img src="assets/img/ped_list.png"/>  Pedestrian</th>
+                      <th><img src="assets/img/bike_list.png"/> Bicycle<br>Total / Yesterday</th>
+                      <th><img src="assets/img/ped_list.png"/>  Pedestrian<br>Total / Yesterday</th>
                       <th>Total Volume</th>
                   </thead>
                   <tbody class="list"></tbody>
@@ -75,94 +64,52 @@
               </div>
             </div>
           </div>
-        </div> <!--close sidebar-->
-     
-        <!-- Data panel for annual activity indicators -->
-   <!--  
-          <div id="mi-annual-activity" class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0">
-              <div class="panel panel-primary" >
-                  <div class="panel-heading">
-                      <h4 class="panel-title"><span><i class="fa fa-edit white"></i>&nbsp;&nbsp;Regional Statistics</h4></span>
-                  </div>
-                  <div id="mi-trade-panel" class="panel-body">
-                        <div class="mi-upper-total">
-                              <div class="row">
-                                  <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1 ">
-                                      <div id="mi-rank-icon" class="mi-icons mi-center">
-                                          <i class="glyphicon glyphicon-calendar"></i>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
-                                      <div id="mi-total-trade-value">77,777</div>
-                                      <div class="mi-total-text">monthly</div>
-                                  </div>
-                              </div>                    
-                          <div class="mi-upper-total">
-                              <div class="row">
-                                  <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1 ">
-                                      <div id="mi-total-icon" class="mi-icons mi-center">
-                                          <i class="glyphicon glyphicon-list-alt"></i>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
-                                      <div id="mi-total-trade-value">464</div>
-                                      <div class="mi-total-text">daily</div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="mi-upper-total">
-                              <div class="row">
-                                  <div class="col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1  ">
-                                      <div id="mi-foreign-icon" class="mi-icons mi-center">
-                                          <i class="glyphicon glyphicon-time"></i>
-                                      </div>
-                                  </div>
-                                  <div class="col-lg-7 col-sm-8 col-xs-7 mi-right-stats">
-                                      <div id="mi-foreign-value">67</div>
-                                      <div class="mi-total-text">hourly</div>
-                                  </div>
-                              </div>
-                          </div>
-                   -->       
-                      <!--    <div class="mi-upper-highlight-row mi-bottom-divider">
-                              <span id="mi-foreign-percent" class="mi-percent">0.0%</span> regional <span class="mi-growth">change</span> vs. <span id="mi-foreign-national" class="mi-percent">0.0%</span> national <span class="mi-growth">change</span>
-                          </div> -->
-           <!--             
-                      </div>
-                  </div>
-              </div>                             
-          </div> -->       
-          <!--End MI Panel Group -->
-          <div id="datainfo" class="col-sm-4"></div> 
-        
-          <div id="map" class="col-sm-4"></div>
+         </div> 
+         <div class="row bottom-row">
+           <div id="map"></div>
+         </div>
         </div>
-  
-
-      <div id="lower-panel" style="overflow: scroll; overflow-x: hidden;">  
        
-        <div class="col-sm-9 col-lg-9">
-           <!-- <h2>Monthly Summary</h2> -->
-             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#chart">Chart</a></li>
-                <li><a data-toggle="pill" href="#table">Table</a></li>
-             </ul>
-             <div class="tab-content">
-                 <div id="chart" class="tab-pane fade in active">
-                    <div id="Monthly" class="barchart"></div>
-                </div>
-                <div id="table" class="tab-pane fade">
-                    <div id="table_data" class="infosidebar"></div>
-                </div>
-             </div>
+        
+        <div id="stationinfo" class="col-sm-3">
+        <div class="row top-rowb">
+        <div class="panel panel-primary">
+        <div class="panel-heading" id="card"></div>
+        <div id="datainfo" style="margin-bottom:85px;"></div> 
+        </div>
+      </div>
+
+      <div class="row bottom-rowb">
+        <div class="panel panel-primary">
+        <div class="panel-heading" id="card">Total Volume by Mode</div>
+           <div id="infographs">
+            <div id="bikepeddata" class="piechart"></div>
+          </div>
+        </div>
+    </div>
         </div>
 
-        <div class="col-sm-3 col-lg-3 nopadding">
-           <div id="infographs">
-             <div id="bikepeddata" class="piechart"></div>
-           </div>
+        <div id="stationinfo2" class="col-sm-4">
+
+          <div class="row top-rowb">
+          <div class="panel panel-primary" id="cardbikepanel">
+          <div class="panel-heading" id="cardbike">Bicycle Volume by Month</div>
+          <div id="Monthly" class="barchart"></div>
+          </div>
+          </div>
+
+          <div class="row bottom-rowb">
+          <div class="panel panel-primary" id="cardpedpanel">
+          <div class="panel-heading" id="cardped">Pedestrian Volume by Month</div>
+          <div id="Monthly2" class="barchart"></div>
+          </div>
+          </div>
         </div>
-    </div>  
+
+        </div>
+
+         
+  
 </div>
 
 <!-- End Main Body -->
