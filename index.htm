@@ -38,7 +38,6 @@
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li>
               </ul>
             </li>
-            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Station List</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -46,7 +45,9 @@
 
 <!-- Start Main Body -->
     <div id="container">
-        <div id="sidebar" class="col-sm-4">
+    <!--   <div id="map" class="col-sm-3"></div> -->
+        <div id="sidebar" class="col-sm-5">
+          <div class="row top-row">
           <div class="sidebar-wrapper">
             <div class="panel panel-default" id="features">
     
@@ -54,8 +55,8 @@
                 <table class="table table-hover" id="feature-list">
                   <thead >
                       <th>Station</th>
-                      <th><img src="assets/img/bike_list.png"/> Bicycle</th>
-                      <th><img src="assets/img/ped_list.png"/>  Pedestrian</th>
+                      <th><img src="assets/img/bike_list.png"/> Bicycle<br>Total / Yesterday</th>
+                      <th><img src="assets/img/ped_list.png"/>  Pedestrian<br>Total / Yesterday</th>
                       <th>Total Volume</th>
                   </thead>
                   <tbody class="list"></tbody>
@@ -63,35 +64,48 @@
               </div>
             </div>
           </div>
+         </div> 
+         <div class="row bottom-row">
+           <div id="map"></div>
+         </div>
         </div>
-        <div id="map" class="col-sm-3"></div>
+       
         
-        <div id="stationinfo" class="col-sm-5">
+        <div id="stationinfo" class="col-sm-3">
+        <div class="row top-rowb">
         <div class="panel panel-primary">
         <div class="panel-heading" id="card"></div>
-                    
-        <row>
-        <div id="datainfo" class="col-sm-8"></div> 
-        <div id="infographs" class="col-sm-3">
-            <div id="bikepeddata" class="piechart"></div>
+        <div id="datainfo" style="margin-bottom:85px;"></div> 
         </div>
-        </row>
-        <row>
-             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#chart">Chart</a></li>
-                <li><a data-toggle="pill" href="#table">Table</a></li>
-             </ul>
-             <div class="tab-content">
-                 <div id="chart" class="tab-pane fade in active">
-                    <div id="Monthly" class="barchart"></div>
-                </div>
-                <div id="table" class="tab-pane fade">
-                    <div id="table_data" class="infosidebar"></div>
-                </div>
-             </div>
-        </row>
+      </div>
 
-</div>
+      <div class="row bottom-rowb">
+        <div class="panel panel-primary">
+        <div class="panel-heading" id="card">Total Volume by Mode</div>
+           <div id="infographs">
+            <div id="bikepeddata" class="piechart"></div>
+          </div>
+        </div>
+    </div>
+        </div>
+
+        <div id="stationinfo2" class="col-sm-4">
+
+          <div class="row top-rowb">
+          <div class="panel panel-primary" id="cardbikepanel">
+          <div class="panel-heading" id="cardbike">Bicycle Volume by Month</div>
+          <div id="Monthly" class="barchart"></div>
+          </div>
+          </div>
+
+          <div class="row bottom-rowb">
+          <div class="panel panel-primary" id="cardpedpanel">
+          <div class="panel-heading" id="cardped">Pedestrian Volume by Month</div>
+          <div id="Monthly2" class="barchart"></div>
+          </div>
+          </div>
+        </div>
+
         </div>
 
          
