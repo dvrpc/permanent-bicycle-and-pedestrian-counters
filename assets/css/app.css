@@ -20,22 +20,22 @@ input[type="radio"], input[type="checkbox"] {
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
 }
-#sidebar, #datainfo, #datainfo .panel {
+#sidebar,#sidebar2, #datainfo, #datainfo .panel {
   height: 100%;
 }
 .top-row {
-    height: 55%;
+    height: 60%;
     overflow-y: hidden;
 }
 .bottom-row {
-    height: 45%;
-    overflow-y: hidden;
+    height: 40%;
+    overflow-y: auto;
 }
 #map {
   height:100%;
   overflow: hidden;
 }
-#stationinfo{
+#sidebar2{
     overflow: auto;
 }
 .barchart{

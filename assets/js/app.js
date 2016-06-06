@@ -203,8 +203,8 @@
                 layer.bindLabel(feature.properties.Name, {
                     className: 'leaflet-label'
                 });
-                layer.on({click: identify});
-                layer.on({click: populatepie});
+              //  layer.on({click: identify});
+              //  layer.on({click: populatepie});
                 layer.on({click: populatebarchart});
                 //layer.on({
                 //   click: function (e) {
@@ -214,7 +214,14 @@
                 //    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
                 //  }
                 //   });
-                $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + layer.feature.properties.Name + '</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_BIKE).format('0,0') + ' / '+numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_PED).format('0,0') +' / '+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td><td style="vertical-align: middle;">' + numeral(layer.feature.properties.TT_ALL).format('0,0') + '</td></tr>');
+                $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
+                 '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + 
+                 layer.feature.properties.Name + '</td><td style="vertical-align: middle;text-align: center">' + 
+                 numeral(layer.feature.properties.PED_Y).format('0,0') + ' | '+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +
+                 '</td><td style="vertical-align: middle;text-align: center">' + 
+                 numeral(layer.feature.properties.PED_W).format('0,0') +' | '+ numeral(layer.feature.properties.BIKE_W).format('0,0') +
+                 '</td><td style="vertical-align: middle;text-align: center">' + 
+                 numeral(layer.feature.properties.PED_YTD).format('0,0') + ' | '+ numeral(layer.feature.properties.BIKE_YTD).format('0,0') + '</td></tr>');
 
             }
         },
@@ -288,162 +295,14 @@
     function identify(e) {
         var layer = e.target;
         var props = layer.feature.properties;
-        var content2 = //"<div class='panel panel-primary'>"
-                //    +"<div class='panel-heading'><h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
-                    "<div class='panel-body'>"
-                            +"<div class='mi-upper-total'>"
-                            +"<div class='row'>"
-                            +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
-                            +"<div id='mi-foreign-icon' class='mi-icons mi-center'>"
-                            +"<i class='glyphicon glyphicon-calendar'></i>"
-                            +"</div>"
-                            +"</div>"
-                            +"<div class='col-lg-7 col-sm-8 col-xs-7 mi-right-stats'>"
-                            +"<div id='mi-foreign-value'>"+ (props.AVE_ALLm)+"</div>"
-                            +"<div class='mi-total-text'>monthly</div>"
-                            +"</div>"
-                            +"</div>"
-                            +"</div>"
-                            +"<div class='mi-upper-total'>"
-                            +"<div class='row'>"
-                            +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
-                            +"<div id='mi-foreign-icon' class='mi-icons mi-center'>"
-                            +"<i class='glyphicon glyphicon-list-alt'></i>"
-                            +"</div>"
-                            +"</div>"
-                            +"<div class='col-lg-7 col-sm-8 col-xs-7 mi-right-stats'>"
-                            +"<div id='mi-foreign-value'>"+ (props.AVE_ALLd)+"</div>"
-                            +"<div class='mi-total-text'>daily</div>"
-                            +"</div>"
-                            +"</div>"
-                            +"</div>"
-                             +"<div class='mi-upper-total'>"
-                            +"<div class='row'>"
-                            +"<div class='col-lg-4 col-lg-offset-1 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-1'>"
-                            +"<div id='mi-foreign-icon' class='mi-icons mi-center'>"
-                            +"<i class='glyphicon glyphicon-time'></i>"
-                            +"</div>"
-                            +"</div>"
-                            +"<div class='col-lg-7 col-sm-8 col-xs-7 mi-right-stats'>"
-                            +"<div id='mi-foreign-value'>"+ (props.AVE_ALLhr)+"</div>"
-                            +"<div class='mi-total-text'>hourly</div>"
-                            +"</div>"
-                            +"</div>"
-                            +"</div>"
-                    //   +"</div>"
-                   //    +"</div>"
-        
-      /*      var content2 = "<div class='panel panel-primary'>"
-                    +"<div class='panel-heading'>"
-                    +"<h4 class='panel-title' id='topPartnerTitle'>"+ (props.Name)+"</h4></div>"
-                    +"<div class='panel-body'>"
-                    +"<li class='list-group-item'>Average All Monthly: <B>" + (props.AVE_ALLm) +"</B></li>" 
-                    +"<li class='list-group-item'>Average All Daily: " + (props.AVE_ALLd) +"</li>" 
-                    +"<li class='list-group-item'>Average All Hourly: "+ (props.AVE_ALLhr) +"</li>"  
-                    +"<hr>"
-                    +"<li class='list-group-item'>Average Bike Monthly: " + (props.AVE_BIKEm) +"</li>" 
-                    +"<li class='list-group-item'>Average Bike Daily: " + (props.AVE_BIKEd) +"</li>" 
-                 +"<li class='list-group-item'>Average Bike Hourly: "+ (props.AVE_BIKEhr) +"</li>"  
-                    +"<hr>"
-                    +"<li class='list-group-item'>Average Pedestrian Monthly: " + (props.AVE_PEDm) +"</li>" 
-                    +"<li class='list-group-item'>Average Pedestrian  Daily: " + (props.AVE_PEDd) +"</li>" 
-                    +"<li class='list-group-item'>Average Pedestrian  Hourly: "+ (props.AVE_PEDhr) +"</li>"  
-                    +"</div>"    
-                    +"</div>"  
-         */           
-        
-
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
         var content3 = (props.Name)
                        
-        document.getElementById('card').innerHTML = content3;        
-        document.getElementById('datainfo').innerHTML = content2;
+     //   document.getElementById('card').innerHTML = content3;        
     //    document.getElementById('table_data').innerHTML = content;
     };
-
-  //  Highcharts.setOptions({
-  //      colors: ['#e66101', '#5e3c99']
- //   });
-
-    function updatepie(Values) {
-        var piechart = {
-            chart: {
-                renderTo: 'bikepeddata',
-                type: 'pie',
-                plotBackgroundColor: null,
-                plotBorderWidth: 0, //null,
-                plotShadow: true,
-                height: 280,
-             //   width: 180,
-                colors: ['#e66101', '#5e3c99']
-            },
-            title: {
-              //  text: 'Total Volume',
-              text:null,
-                style: {fontSize:'14px',
-                fontWeight: 'bold'
-                }
-               // x: -20 //center   
-            },
-         /*   subtitle: {
-                text: 'by mode',
-                style: {fontSize:'10px',
-                color: '#888888'
-                }
-              //  x: -20 //center   
-            }, */
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    animation: {
-                        duration: 750
-                    },
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        //   style: '{text-align: center}',
-                        verticalAlign: 'middle',
-                        distance: -20,
-                        format: '<span>{point.percentage:.0f} %</span>',
-                        //   format: '<span><b>{point.name}</b> <br/> {point.percentage:.0f} %</span>',
-                    },
-                    showInLegend: true
-                }
-            },
-            legend: {
-                layout: 'horizontal',
-                verticalAlign: 'bottom',
-               // x: -20
-                y: 0
-            },
-            tooltip: {
-                valueDecimals: 0,
-                pointFormat: "Counts: {point.y:,.0f}"
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Counts',
-                id: 'Values',
-                innerSize: '60%',
-                colors: ['#e66101', '#5e3c99'],
-                data: []
-            }]
-        };
-        var Labels = ["Bicycle", "Pedestrian"],
-            countdata = [];
-        for (var i = 0; i < Values.length; i++) {
-            countdata.push({
-                name: Labels[i],
-                y: Values[i]
-            })
-        }
-        piechart.series[0].data = countdata;
-        var chart2 = new Highcharts.Chart(piechart)
-    }
 
     function populatebarchart(e) {
         //    console.log("populatebarchart()");
@@ -454,12 +313,15 @@
             var props = layer.feature.properties;
                   // draws Bike on top
             updatestackedchart([
-                [props.BIKEIN1,props.BIKEIN2,props.BIKEIN3,props.BIKEIN4,props.BIKEIN5,props.BIKEIN6,props.BIKEIN7,props.BIKEIN8,props.BIKEIN9,props.BIKEIN10,props.BIKEIN11,props.BIKEIN12],
-                [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
+           //     [props.BIKEIN1,props.BIKEIN2,props.BIKEIN3,props.BIKEIN4,props.BIKEIN5,props.BIKEIN6,props.BIKEIN7,props.BIKEIN8,props.BIKEIN9,props.BIKEIN10,props.BIKEIN11,props.BIKEIN12],
+           //     [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
+                [props.BIKEIN8,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1,props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9],
+                [props.BIKEOUT8,props.BIKEOUT7,props.BIKEOUT6,props.BIKEOUT5,props.BIKEOUT4,props.BIKEOUT3,props.BIKEOUT2,props.BIKEOUT1,props.BIKEOUT12,props.BIKEOUT11,props.BIKEOUT10,props.BIKEOUT9],
+           
            ])
              updatestackedchart2([
-               [props.PEDIN1,props.PEDIN2,props.PEDIN3,props.PEDIN4,props.PEDIN5,props.PEDIN6,props.PEDIN7,props.PEDIN8,props.PEDIN9,props.PEDIN10,props.PEDIN11,props.PEDIN12],
-                [props.PEDOUT1,props.PEDOUT2,props.PEDOUT3,props.PEDOUT4,props.PEDOUT5,props.PEDOUT6,props.PEDOUT7,props.PEDOUT8,props.PEDOUT9,props.PEDOUT10,props.PEDOUT11,props.PEDOUT12],
+               [props.PEDIN8,props.PEDIN7,props.PEDIN6,props.PEDIN5,props.PEDIN4,props.PEDIN3,props.PEDIN2,props.PEDIN1,props.PEDIN12,props.PEDIN11,props.PEDIN10,props.PEDIN9],
+                [props.PEDOUT8,props.PEDOUT7,props.PEDOUT6,props.PEDOUT5,props.PEDOUT4,props.PEDOUT3,props.PEDOUT2,props.PEDOUT1,props.PEDOUT12,props.PEDOUT11,props.PEDOUT10,props.PEDOUT9],
             ])
         }
 // colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
@@ -471,7 +333,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:300,
+                height:240,
                 backgroundColor: '#fef0d9'
             },
             colors: 
@@ -572,7 +434,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:300,
+                height:240,
                 backgroundColor: '#f2f0f7'
             },
              colors: ['#5e3c99','#998ec3'],
