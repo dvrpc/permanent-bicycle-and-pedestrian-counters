@@ -24,7 +24,7 @@
             <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
           </div>
-              <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-10px 10px -10px 0;"/></a>
+              <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-4px 10px -10px 0;"/></a>
               <img  style="margin:5px 0px 0px 0px" src="assets/img/bikeped_logo.png"/>   
               </span>
         </div>
@@ -45,19 +45,18 @@
 
 <!-- Start Main Body -->
     <div id="container">
-    <!--   <div id="map" class="col-sm-3"></div> -->
-        <div id="sidebar" class="col-sm-5">
+        <div id="sidebar" class="col-sm-7">
           <div class="row top-row">
           <div class="sidebar-wrapper">
             <div class="panel panel-default" id="features">
     
               <div class="sidebar-table">
                 <table class="table table-hover" id="feature-list">
-                  <thead >
+                  <thead>
                       <th>Station</th>
-                      <th><img src="assets/img/bike_list.png"/> Bicycle<br>Total / Yesterday</th>
-                      <th><img src="assets/img/ped_list.png"/>  Pedestrian<br>Total / Yesterday</th>
-                      <th>Total Volume</th>
+                      <th style=" text-align: center;">Yesterday<br>(4/29/2016)<br>Pedestrian | Cyclists</th>
+                      <th style=" text-align: center;">Week-to-date<br>(4/24-4/29/2016)<br>Pedestrian | Cyclists</th>
+                      <th style=" text-align: center;">Year-to-date<br>(1/1-4/29/2016)<br>Pedestrian | Cyclists</th>
                   </thead>
                   <tbody class="list"></tbody>
                 </table>
@@ -66,49 +65,28 @@
           </div>
          </div> 
          <div class="row bottom-row">
-           <div id="map"></div>
-         </div>
-        </div>
-       
-        
-        <div id="stationinfo" class="col-sm-3">
-        <div class="row top-rowb">
-        <div class="panel panel-primary">
-        <div class="panel-heading" id="card"></div>
-        <div id="datainfo" style="margin-bottom:85px;"></div> 
-        </div>
-      </div>
 
-      <div class="row bottom-rowb">
-        <div class="panel panel-primary">
-        <div class="panel-heading" id="card">Total Volume by Mode</div>
-           <div id="infographs">
-            <div id="bikepeddata" class="piechart"></div>
-          </div>
-        </div>
-    </div>
-        </div>
-
-        <div id="stationinfo2" class="col-sm-4">
-
-          <div class="row top-rowb">
-          <div class="panel panel-primary" id="cardbikepanel">
-          <div class="panel-heading" id="cardbike">Bicycle Volume by Month</div>
-          <div id="Monthly" class="barchart"></div>
-          </div>
-          </div>
-
-          <div class="row bottom-rowb">
+      
           <div class="panel panel-primary" id="cardpedpanel">
           <div class="panel-heading" id="cardped">Pedestrian Volume by Month</div>
           <div id="Monthly2" class="barchart"></div>
           </div>
+        </div>
+        </div>
+        <div id="sidebar2" class="col-sm-5">
+          <div class="row top-row">
+                <div id="map"></div>
           </div>
+       <div class="row bottom-row">
+           <div class="panel panel-primary" id="cardbikepanel">
+          <div class="panel-heading" id="cardbike">Bicycle Volume by Month</div>
+          <div id="Monthly" class="barchart"></div>
+          </div>
+    
         </div>
+     </div>  
 
-        </div>
-
-         
+ </div>     
   
 </div>
 
