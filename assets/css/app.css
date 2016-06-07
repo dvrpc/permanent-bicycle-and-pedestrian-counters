@@ -55,6 +55,7 @@ input[type="radio"], input[type="checkbox"] {
 #cardbike{
   background-color:#fc8d59;
   border-color: #fc8d59;
+  font-size: 12px;
 }
 .top-rowb {
     height: 50%;
@@ -71,6 +72,7 @@ margin-right: 2px;
 #cardped{
   background-color: #756bb1;
   border-color: #756bb1;
+  font-size: 12px;
 }
 .navbar-fixed-top {
     height: 20px; /* Whatever you want. */
@@ -112,9 +114,9 @@ margin-right: 2px;
   position: relative;
 }
 .sidebar-table {
-  position: absolute;
+ /* position: absolute; */
   width: 100%;
-  top: 10px;
+  top: 50px;
   bottom: 0px;
   overflow: auto;
 }

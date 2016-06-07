@@ -203,7 +203,7 @@
                 layer.bindLabel(feature.properties.Name, {
                     className: 'leaflet-label'
                 });
-              //  layer.on({click: identify});
+                layer.on({click: identify});
               //  layer.on({click: populatepie});
                 layer.on({click: populatebarchart});
                 //layer.on({
@@ -298,9 +298,15 @@
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
-        var content3 = (props.Name)
+        var content3 = "<div>Pedestrian Volume by Month for "+(props.Name)
+                        +"</div>"
+
+        var content4 = "<div>Bicycle Volume by Month for "+(props.Name)
+                        +"</div>"
                        
-     //   document.getElementById('card').innerHTML = content3;        
+          document.getElementById('cardped').innerHTML = content3; 
+          document.getElementById('cardbike').innerHTML = content4;
+          $('#myTab a[href="#station_stats"]').tab('show');        
     //    document.getElementById('table_data').innerHTML = content;
     };
 
@@ -333,7 +339,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:240,
+                height:200,
                 backgroundColor: '#fef0d9'
             },
             colors: 
@@ -434,7 +440,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:240,
+                height:200,
                 backgroundColor: '#f2f0f7'
             },
              colors: ['#5e3c99','#998ec3'],

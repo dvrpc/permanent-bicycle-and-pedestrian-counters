@@ -46,11 +46,16 @@
 <!-- Start Main Body -->
     <div id="container">
         <div id="sidebar" class="col-sm-7">
-          <div class="row top-row">
-          <div class="sidebar-wrapper">
-            <div class="panel panel-default" id="features">
-    
-              <div class="sidebar-table">
+           <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#layers" data-toggle="tab"></i>&nbsp;Regional Stats</a></li>
+                <li><a href="#station_stats" data-toggle="tab" ></i>&nbsp;Station Information</a></li>
+            </ul>
+        <div class="tab-content" style="padding-top: 10px;">
+          <div class="tab-pane active" id="layers">
+          <div class="panel-group">
+             <div class="panel panel-primary" id="regionallist">
+
+                     <div class="sidebar-table">
                 <table class="table table-hover" id="feature-list">
                   <thead>
                       <th>Station</th>
@@ -61,30 +66,32 @@
                   <tbody class="list"></tbody>
                 </table>
               </div>
-            </div>
-          </div>
+             </div> 
          </div> 
-         <div class="row bottom-row">
 
-      
+        </div>
+
+        <div class="tab-pane" id="station_stats">
+          <div class="panel-group">                   
           <div class="panel panel-primary" id="cardpedpanel">
-          <div class="panel-heading" id="cardped">Pedestrian Volume by Month</div>
+          <div class="panel-heading" id="cardped"></div>
           <div id="Monthly2" class="barchart"></div>
           </div>
-        </div>
-        </div>
-        <div id="sidebar2" class="col-sm-5">
-          <div class="row top-row">
-                <div id="map"></div>
-          </div>
-       <div class="row bottom-row">
-           <div class="panel panel-primary" id="cardbikepanel">
-          <div class="panel-heading" id="cardbike">Bicycle Volume by Month</div>
+
+          <div class="panel panel-primary" id="cardbikepanel">
+          <div class="panel-heading" id="cardbike"></div>
           <div id="Monthly" class="barchart"></div>
           </div>
+                       
+          </div>  
+        </div>
     
         </div>
-     </div>  
+      </div>
+
+      <div id="sidebar2" class="col-sm-5">
+        <div id="map"></div>
+      </div>  
 
  </div>     
   
