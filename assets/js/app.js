@@ -91,22 +91,7 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     subdomains: 'abcd',
     maxZoom: 19
-});
- //   var mapquestOSM = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/terrain.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
- //       attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
- //       subdomains: '1234',
- //       mapID: 'newest',
- //       app_id: 'Y8m9dK2brESDPGJPdrvs',
- //       app_code: 'dq2MYIvjAotR8tHvY8Q_Dg',
- //       base: 'aerial',
- //       minZoom: 0,
- //       maxZoom: 20
- //   });
-    //var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
-    //  maxZoom: 19,
-    //  subdomains: ["otile1", "otile2", "otile3", "otile4"],
-    //  attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-    //});
+    });
     var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
         maxZoom: 18,
         subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
@@ -121,7 +106,7 @@
         map.addLayer(stationsLayer);
     });
 
-  var DVRPC = L.geoJson(null, {
+    var DVRPC = L.geoJson(null, {
         style: {
             stroke: true,
             fillColor: 'none',
@@ -216,12 +201,13 @@
                 //   });
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
                  '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + 
-                 layer.feature.properties.Name + '</td><td style="vertical-align: middle;text-align: center">' + 
-                 numeral(layer.feature.properties.PED_Y).format('0,0') + ' | '+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +
-                 '</td><td style="vertical-align: middle;text-align: center">' + 
-                 numeral(layer.feature.properties.PED_W).format('0,0') +' | '+ numeral(layer.feature.properties.BIKE_W).format('0,0') +
-                 '</td><td style="vertical-align: middle;text-align: center">' + 
-                 numeral(layer.feature.properties.PED_YTD).format('0,0') + ' | '+ numeral(layer.feature.properties.BIKE_YTD).format('0,0') + '</td></tr>');
+                 layer.feature.properties.Name + '</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_W).format('0,0') +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_W).format('0,0') +'</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YTD).format('0,0') +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_YTD).format('0,0') +'</td></tr>');
 
             }
         },
