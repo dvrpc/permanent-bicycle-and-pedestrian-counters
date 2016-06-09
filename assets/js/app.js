@@ -292,7 +292,10 @@
                        
           document.getElementById('cardped').innerHTML = content3; 
           document.getElementById('cardbike').innerHTML = content4;
-          $('#myTab a[href="#station_stats"]').tab('show');        
+          $('#cardbikepanel').show();
+          $('#cardpedpanel').show();
+         
+    //      $('#myTab a[href="#station_stats"]').tab('show');        
     //    document.getElementById('table_data').innerHTML = content;
     };
 

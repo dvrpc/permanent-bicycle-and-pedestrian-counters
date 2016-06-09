@@ -46,11 +46,15 @@ input[type="radio"], input[type="checkbox"] {
   width:99%;
 }
 #card{
-  background-color: #888888;
+  background-color: #66BCCE;
+  border-color: #66BCCE;
+  color: #ffffff;
+  font-size:14px;
 }
 #cardbikepanel{
   border-color: #e34a33;
   background-color:#fef0d9;
+  display:none; 
 }
 #cardbike{
   background-color:#fc8d59;
@@ -68,6 +72,7 @@ margin-right: 2px;
 #cardpedpanel{
   border-color: #756bb1;
   background-color:#f2f0f7;
+  display:none; 
 }
 #cardped{
   background-color: #756bb1;
