@@ -23,20 +23,22 @@ input[type="radio"], input[type="checkbox"] {
 #sidebar,#sidebar2, #datainfo, #datainfo .panel {
   height: 100%;
 }
-.top-row {
-    height: 60%;
-    overflow-y: hidden;
+.sidebar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
-.bottom-row {
-    height: 40%;
-    overflow-y: auto;
+.sidebar-table {
+  position: relative;
+  width: 100%;
+  top: 10px;
+  padding-bottom: 15px;
+  overflow: auto;
 }
 #map {
-  height:100%;
+  height:90%;
   overflow: hidden;
-}
-#sidebar2{
-    overflow: auto;
+  margin-top:37px;
 }
 .barchart{
   height:100%;
@@ -60,14 +62,6 @@ input[type="radio"], input[type="checkbox"] {
   background-color:#fc8d59;
   border-color: #fc8d59;
   font-size: 12px;
-}
-.top-rowb {
-    height: 50%;
-margin-right: 2px;
-}
-.bottom-rowb {
-    height: 50%;
-    margin-right: 2px;
 }
 #cardpedpanel{
   border-color: #756bb1;
@@ -113,18 +107,7 @@ margin-right: 2px;
 .feature-row {
   cursor: pointer;
 }
-.sidebar-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.sidebar-table {
- /* position: absolute; */
-  width: 100%;
-  top: 50px;
-  bottom: 0px;
-  overflow: auto;
-}
+
 .leaflet-control-layers {
   overflow: auto;
 }
