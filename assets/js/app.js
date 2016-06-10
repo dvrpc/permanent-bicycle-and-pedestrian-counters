@@ -66,26 +66,6 @@
         }
     }
 
-    function syncSidebar() {
-        /* Empty sidebar features */
-        $("#feature-list tbody").empty();
-        /* Loop through museums layer and add only features which are in the map bounds */
-        stations.eachLayer(function(layer) {
-            if (map.hasLayer(stationsLayer)) {
-                if (map.getBounds().contains(layer.getLatLng())) {
-                    $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.Name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-                }
-            }
-        });
-        /* Update list.js featureList */
-        featureList = new List("features", {
-            valueNames: ["feature-name"]
-        });
-        featureList.sort("feature-name", {
-            order: "asc"
-        });
-    }
-
     /* Basemap Layers */
     var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -191,14 +171,6 @@
                 layer.on({click: identify});
               //  layer.on({click: populatepie});
                 layer.on({click: populatebarchart});
-                //layer.on({
-                //   click: function (e) {
-                //   $("#feature-title").html(feature.properties.Name);
-                //   $("#feature-info").html(content);
-                //   $("#featureModal").modal("show");
-                //    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-                //  }
-                //   });
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
                  '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + 
                  layer.feature.properties.Name + '</td>'+
@@ -223,12 +195,6 @@
 
     //var viewCenter = new L.Control.ViewCenter();
     //map.addControl(viewCenter);
-
-
-    /* Filter sidebar feature list to only show features in current map bounds */
-    //  map.on("moveend", function (e) {
-    //  syncSidebar();
-    //  });
 
     /* Clear feature highlight when map is clicked */
     map.on("click", function(e) {
@@ -284,16 +250,20 @@
         var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
             + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
-        var content3 = "<div>Pedestrian Volume by Month for "+(props.Name)
+        var content3 = "<div>Pedestrian Volume by Month"
                         +"</div>"
 
-        var content4 = "<div>Bicycle Volume by Month for "+(props.Name)
+        var content4 = "<div>Bicycle Volume by Month"
                         +"</div>"
+        var content5 = "<div>Station Information for "+(props.Name)
+                        +"</div>"                
                        
           document.getElementById('cardped').innerHTML = content3; 
           document.getElementById('cardbike').innerHTML = content4;
+          document.getElementById('card').innerHTML = content5;
           $('#cardbikepanel').show();
           $('#cardpedpanel').show();
+          $('#card').show();
          
     //      $('#myTab a[href="#station_stats"]').tab('show');        
     //    document.getElementById('table_data').innerHTML = content;
@@ -528,7 +498,8 @@
         featureList = new List("features", {
             valueNames: ["feature-name"]
         });
-        featureList.sort("feature-name", {
+
+       featureList.sort("feature-name", {
             order: "asc"
         });
     });
