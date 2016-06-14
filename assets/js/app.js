@@ -15,6 +15,16 @@
 
     $(document).on("mouseout", ".feature-row", clearHighlight);
 
+    $(document).on("click", "tr", function(e){
+    // reset rows
+       $("tr").css('background-color', 'white');
+    //    $("tr").css('color', 'black');
+    // set colour of row raising the click event 
+     //   $(this).css('background-color', '#00FFFF');
+        $(this).css('background-color','rgba(0, 255, 255, 0.6)');
+    //    $(this).css('color', 'white');
+    });
+
     $("#about-btn").click(function() {
         $("#aboutModal").modal("show");
         $(".navbar-collapse.in").collapse("hide");
@@ -32,20 +42,6 @@
         $(".navbar-collapse.in").collapse("hide");
         return false;
     });
-
-    $("#list-btn").click(function() {
-        $('#sidebar').toggle();
-        $('#datainfo').toggleClass('col-sm-4 col-sm-6');
-        $('#map').toggleClass('col-sm-4 col-sm-6');
-        map.invalidateSize();
-        return false;
-    });
-
-    $("#nav-btn").click(function() {
-        $(".navbar-collapse").collapse("toggle");
-        return false;
-    });
-
 
     function sizeLayerControl() {
         $(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
@@ -102,11 +98,11 @@
         DVRPC.addData(data);
     });
 
-    var circuit = L.geoJson(null, {
+    var circuite = L.geoJson(null, {
         style: {
             stroke: true,
             fillColor: 'none',
-            color: '#31a354',
+            color: '#8dc63f',
             weight: 3,
             fill: true,
             opacity: 1,
@@ -117,18 +113,54 @@
             layer.bindPopup(feature.properties.NAME);
         },
     });
-    $.getJSON("data/circuit.js", function(data) {
-        circuit.addData(data);
+    $.getJSON("data/existing.js", function(data) {
+        circuite.addData(data);
     });
 
- 
+    var circuitin = L.geoJson(null, {
+        style: {
+            stroke: true,
+            fillColor: 'none',
+            color: '#fdae61',
+            weight: 3,
+            fill: true,
+            opacity: 1,
+            fillOpacity: .70,
+            clickable: true
+        },
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(feature.properties.NAME);
+        },
+    });
+    $.getJSON("data/inprogress.js", function(data) {
+        circuitin.addData(data);
+    });
+
+    var circuitp = L.geoJson(null, {
+        style: {
+            stroke: true,
+            fillColor: 'none',
+            color: '#008192',
+            weight: 3,
+            fill: true,
+            opacity: 1,
+            fillOpacity: .70,
+            clickable: true
+        },
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(feature.properties.NAME);
+        },
+    });
+    $.getJSON("data/planned.js", function(data) {
+        circuitp.addData(data);
+    });
+
     function populatepie(e) {
         // resetHighlight();//  lsoaLayer.setStyle({fillColor: "#396ab2"});
         var layer = e.target;
         // layer.setStyle({fillColor: "#312867"});
         var props = layer.feature.properties,
-
-            bikepeddata = [props.TT_BIKE, props.TT_PED];
+        bikepeddata = [props.TT_BIKE, props.TT_PED];
         updatepie(bikepeddata);
     }
 
@@ -145,13 +177,15 @@
     var highlightStyle = {
         stroke: false,
         fillColor: "#00FFFF",
-        fillOpacity: 0.7,
+        fillOpacity: 0.9,
         radius: 10
     };
 
     function style(feature) {
         return {
-            "color": "#0868AC",
+         // "color": "#0868AC",
+        //  "color": "#8F70AE",
+            "color": "#d53e4f",
             "radius": 10,
             "weight": 0,
             "opacity": 1,
@@ -180,7 +214,6 @@
                 '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_W).format('0,0') +'</td>'+
                 '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YTD).format('0,0') +'</td>'+
                 '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_YTD).format('0,0') +'</td></tr>');
-
             }
         },
     });
@@ -188,7 +221,7 @@
     map = L.map("map", {
         zoom: 9,
         center: [39.952473, -75.164106],
-        layers: [CartoDB_Positron, DVRPC, highlight, circuit, stations],
+        layers: [CartoDB_Positron, DVRPC, highlight, circuite,circuitin,circuitp,stations],
         zoomControl: false,
         attributionControl: false
     });
@@ -240,6 +273,51 @@
         collapsed: isCollapsed
     }).addTo(map);
 
+    L.Control.MapLegend = L.Control.extend({
+        options: {
+            position: 'bottomleft',
+        },
+        onAdd: function (map) {
+            //TODO: Probably should throw all this data in a class and just loop through it all
+            var legendDiv = L.DomUtil.create('div', 'map-legend legend-control leaflet-bar');
+
+            legendDiv.innerHTML += '<div id="legend-icon" title="Toggle Legend"><i class="glyphicon glyphicon-minus"></i><span class="legend-label" style="display:none;">&nbsp;&nbsp;Legend</span></div>';
+
+            var legend_top = L.DomUtil.create('div', 'map-legend-items legend-top', legendDiv),
+                legend_body = L.DomUtil.create('div', 'map-legend-items legend-body', legendDiv),
+                legend_bottom = L.DomUtil.create('div', 'map-legend-items legend-bottom', legendDiv);
+
+            legend_body.innerHTML += '<div id="legend-content" class="row"><div class="col-xs-4"><i class="glyphicon glyphicon-minus ct-existing"></i>&nbsp;&nbsp;Existing</div><div class="col-xs-4"><i class="glyphicon glyphicon-minus ct-inprogress"></i>&nbsp;&nbsp;In Progress</div><div class="col-xs-4"><i class="glyphicon glyphicon-minus ct-planned"></i><span>&nbsp;&nbsp;Planned</span></div></div>';
+            
+            legend_top.innerHTML += '<p><b>The Circuit Trails</b>'
+            
+            legendDiv.setAttribute('data-status', 'open');
+
+            return legendDiv;
+        }
+    });
+
+    var mapLegend = new L.Control.MapLegend();
+    map.addControl(mapLegend);
+
+    // legend toggle
+$(document.body).on('click', '#legend-icon', function(){
+    var toggleStatus = $('.map-legend').attr('data-status');
+
+    if(toggleStatus === 'closed'){
+        $('.map-legend').css('width', '320px').css('height', 'auto').attr('data-status', 'open');
+        $('#legend-icon i').toggleClass('glyphicon glyphicon-list glyphicon glyphicon-minus');
+        $('#legend-icon .legend-label').hide();
+        $('.map-legend-items').show();
+    }else{
+        $('.map-legend').css('width', '80px').css('height', '32px').attr('data-status', 'closed');
+        $('#legend-icon i').toggleClass('glyphicon glyphicon-minus glyphicon glyphicon-list');
+        $('#legend-icon .legend-label').show();
+        $('.map-legend-items').hide();
+    }
+});
+
+
     $("#featureModal").on("hidden.bs.modal", function(e) {
         $(document).on("mouseout", ".feature-row", clearHighlight);
     });
@@ -258,12 +336,13 @@
         var content5 = "<div>Station Information for "+(props.Name)
                         +"</div>"                
                        
-          document.getElementById('cardped').innerHTML = content3; 
-          document.getElementById('cardbike').innerHTML = content4;
-          document.getElementById('card').innerHTML = content5;
-          $('#cardbikepanel').show();
-          $('#cardpedpanel').show();
-          $('#card').show();
+        document.getElementById('cardped').innerHTML = content3; 
+        document.getElementById('cardbike').innerHTML = content4;
+        document.getElementById('card').innerHTML = content5;
+        $('#cardbikepanel').show();
+        $('#cardpedpanel').show();
+        $('#card').show();
+        $('#cardclick').hide();
          
     //      $('#myTab a[href="#station_stats"]').tab('show');        
     //    document.getElementById('table_data').innerHTML = content;
@@ -495,7 +574,7 @@
         sizeLayerControl();
         /* Fit map to boroughs bounds */
         //  map.fitBounds(boroughs.getBounds());
-        featureList = new List("features", {
+        featureList = new List("regionallist", {
             valueNames: ["feature-name"]
         });
 
