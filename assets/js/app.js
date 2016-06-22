@@ -300,6 +300,8 @@
     var mapLegend = new L.Control.MapLegend();
     map.addControl(mapLegend);
 
+   stationsLayer.bringToFront();
+
     // legend toggle
 $(document.body).on('click', '#legend-icon', function(){
     var toggleStatus = $('.map-legend').attr('data-status');
