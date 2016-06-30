@@ -361,13 +361,13 @@ $(document.body).on('click', '#legend-icon', function(){
             updatestackedchart([
            //     [props.BIKEIN1,props.BIKEIN2,props.BIKEIN3,props.BIKEIN4,props.BIKEIN5,props.BIKEIN6,props.BIKEIN7,props.BIKEIN8,props.BIKEIN9,props.BIKEIN10,props.BIKEIN11,props.BIKEIN12],
            //     [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
-                [props.BIKEIN8,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1,props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9],
-                [props.BIKEOUT8,props.BIKEOUT7,props.BIKEOUT6,props.BIKEOUT5,props.BIKEOUT4,props.BIKEOUT3,props.BIKEOUT2,props.BIKEOUT1,props.BIKEOUT12,props.BIKEOUT11,props.BIKEOUT10,props.BIKEOUT9],
+                [props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9,props.BIKEIN9,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1],
+                [props.BIKEOUT12,props.BIKEOUT11,props.BIKEOUT10,props.BIKEOUT9,props.BIKEOUT8,props.BIKEOUT7,props.BIKEOUT6,props.BIKEOUT5,props.BIKEOUT4,props.BIKEOUT3,props.BIKEOUT2,props.BIKEOUT1],
            
            ])
              updatestackedchart2([
-               [props.PEDIN8,props.PEDIN7,props.PEDIN6,props.PEDIN5,props.PEDIN4,props.PEDIN3,props.PEDIN2,props.PEDIN1,props.PEDIN12,props.PEDIN11,props.PEDIN10,props.PEDIN9],
-                [props.PEDOUT8,props.PEDOUT7,props.PEDOUT6,props.PEDOUT5,props.PEDOUT4,props.PEDOUT3,props.PEDOUT2,props.PEDOUT1,props.PEDOUT12,props.PEDOUT11,props.PEDOUT10,props.PEDOUT9],
+               [props.PEDIN12,props.PEDIN11,props.PEDIN10,props.PEDIN9,props.PEDIN8,props.PEDIN7,props.PEDIN6,props.PEDIN5,props.PEDIN4,props.PEDIN3,props.PEDIN2,props.PEDIN1],
+                [props.PEDOUT12,props.PEDOUT11,props.PEDOUT10,props.PEDOUT9,props.PEDOUT8,props.PEDOUT7,props.PEDOUT6,props.PEDOUT5,props.PEDOUT4,props.PEDOUT3,props.PEDOUT2,props.PEDOUT1],
             ])
         }
 // colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
@@ -394,7 +394,7 @@ $(document.body).on('click', '#legend-icon', function(){
                 x: -20 //center
             },
             xAxis: {
-                categories: [ 'Jan', 'Feb', 'March', 'April','May','June','July','August','September','October','November','December']
+                categories: [ 'June 2015', 'July', 'Aug','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May']
             },
             plotOptions: {
                 column: {
@@ -422,10 +422,10 @@ $(document.body).on('click', '#legend-icon', function(){
                 }
             },
             legend: {
-                align: 'left',
+                align: 'right',
                 x: 0,
-                verticalAlign: 'bottom',
-                y: 12,
+                verticalAlign: 'top',
+                y: 0,
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
@@ -493,7 +493,7 @@ $(document.body).on('click', '#legend-icon', function(){
                 x: -20 //center
             },
             xAxis: {
-                categories: [ 'Jan', 'Feb', 'March', 'April','May','June','July','August','September','October','November','December']
+                categories:  [ 'June 2015', 'July', 'Aug','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May']
             },
             plotOptions: {
                 column: {
@@ -521,10 +521,10 @@ $(document.body).on('click', '#legend-icon', function(){
                 }
             },
             legend: {
-                align: 'left',
+                align: 'right',
                 x: 0,
-                verticalAlign: 'bottom',
-                y: 12,
+                verticalAlign: 'top',
+                y: 0,
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',

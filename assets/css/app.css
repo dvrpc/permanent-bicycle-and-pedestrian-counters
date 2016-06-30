@@ -79,7 +79,7 @@ color: #b0b0b0;
   font-size: 12px;
 }
 .map-legend {
-    padding: 2px 4px;
+    padding: 0px 0px;
     line-height: 1;
     border: 1px solid #fff;
     outline: none;
