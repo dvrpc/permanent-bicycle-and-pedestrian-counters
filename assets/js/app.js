@@ -68,14 +68,13 @@
     subdomains: 'abcd',
     maxZoom: 19
     });
-    var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-        maxZoom: 18,
-        subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
-    }), L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
-        attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-    })]);
+
+   var Mapbox_Imagery = L.tileLayer(
+    'https://api.mapbox.com/styles/v1/crvanpollard/cimpi6q3l00geahm71yhzxjek/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY3J2YW5wb2xsYXJkIiwiYSI6Ii00ZklVS28ifQ.Ht4KwAM3ZUjo1dT2Erskgg', {
+    tileSize: 512,
+    zoomOffset: -1,
+    attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
    /* Overlay Layers */
        $.getJSON('data/bikeped.js', function(data) {
         stations.addData(data);
@@ -266,7 +265,7 @@
 
     var baseLayers = {
         "Street Map": CartoDB_Positron,
-        "Imagery with Streets": mapquestHYB
+        "Imagery with Streets": Mapbox_Imagery
     };
 
     var layerControl = L.control.groupedLayers(baseLayers, {
