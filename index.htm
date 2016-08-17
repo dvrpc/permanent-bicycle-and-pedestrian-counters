@@ -30,8 +30,8 @@
         </div>
         <div class="navbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
-            <li><a href="#" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li>
+            <li><a href="#" id="about-btn"><i class="fa fa-info-circle white"></i>&nbsp;&nbsp;About</a></li>
+           <!--  <li><a href="#" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li> -->
             <li><a href="#" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
@@ -50,16 +50,14 @@
                   <thead >
                     <tr class="table-toprow">
                       <TH COLSPAN=1></TH>
-                      <TH COLSPAN=1></TH>
-                      <TH COLSPAN=2 class="table-th">Yesterday<br>(4/29/2016)</TH>
-                      <TH COLSPAN=2 class="table-th">Week-to-date<br>(4/24-4/29/2016)</TH>
-                      <TH COLSPAN=2 class="table-th">Year-to-date<br>(1/1-4/29/2016)</TH>
+                     <!-- <TH COLSPAN=2 class="table-th">Yesterday<br>(4/29/2016)</TH> -->
+                      <TH COLSPAN=2 class="table-th">Previous Month<br>(7/1-7/31/2016)</TH>
+                      <TH COLSPAN=2 class="table-th">Year-to-date<br>(1/1-7/31/2016)</TH>
                     </tr>
                     <tr class="table-bottomrow">
                       <th class="table-th1" >Location</th>
-                      <th class="table-th1" >Detailed Count Information</th>
-                      <th class="table-thp" >Pedestrian</th>
-                      <th class="table-thb" >Cyclists</th>
+                    <!--  <th class="table-thp" >Pedestrian</th> -->
+                    <!--  <th class="table-thb" >Cyclists</th> -->
                       <th class="table-thp" >Pedestrian</th>
                       <th class="table-thb" >Cyclists</th>
                       <th class="table-thp" >Pedestrian</th>
@@ -124,8 +122,8 @@
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
-              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
-              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>
+              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-info-circle"></i>&nbsp;About</a></li>
+              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact</a></li>
               <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
             </ul>
             <div class="tab-content" id="aboutTabsContent">
@@ -171,12 +169,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">
-              Original bootleaft template developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a>
-            </h4>
           </div>
           <div class="modal-body">
-            <div id="attribution"></div>
+            <div id="attribution">
+             &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a></div>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

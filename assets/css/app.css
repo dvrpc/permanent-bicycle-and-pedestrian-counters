@@ -335,3 +335,7 @@ color: #b0b0b0;
     font-weight: 800;
     padding: 3px 0px;
 }
+a.detaileddata{
+  float:right; 
+  display:inline-block;
+}
