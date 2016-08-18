@@ -15,7 +15,7 @@
 
     $(document).on("mouseout", ".feature-row", clearHighlight);
 
-    $(document).on("click", "tr", function(e){
+    function highlightRow(e){
     // reset rows
        $("tr").css('background-color', 'white');
     //    $("tr").css('color', 'black');
@@ -23,7 +23,9 @@
      //   $(this).css('background-color', '#00FFFF');
         $(this).css('background-color','rgba(0, 255, 255, 0.6)');
     //    $(this).css('color', 'white');
-    });
+    }
+    
+    $(document).on("click", "tr", highlightRow);
 
     $("#about-btn").click(function() {
         $("#aboutModal").modal("show");
@@ -344,6 +346,8 @@ $(document.body).on('click', '#legend-icon', function(){
         $('#cardpedpanel').show();
         $('#card').show();
         $('#cardclick').hide();
+        
+        highlightRow.call(document.getElementById(L.stamp(layer)))
          
     //      $('#myTab a[href="#station_stats"]').tab('show');        
     //    document.getElementById('table_data').innerHTML = content;
