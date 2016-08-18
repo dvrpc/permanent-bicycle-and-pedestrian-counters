@@ -347,7 +347,7 @@ $(document.body).on('click', '#legend-icon', function(){
         $('#card').show();
         $('#cardclick').hide();
         
-        highlightRow.bind(document.getElementById(layer.id))
+        highlightRow.call(document.getElementById(L.stamp(layer)))
          
     //      $('#myTab a[href="#station_stats"]').tab('show');        
     //    document.getElementById('table_data').innerHTML = content;
