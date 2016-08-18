@@ -211,8 +211,8 @@
                 '<td class="feature-name">' + layer.feature.properties.Name + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' + layer.feature.properties.GEOID + '" target="_blank">Access Detailed Data</a></td>'+
               // Ped  Yesterday  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
               // Bike Yesterday '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_W).format('0,0') +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_W).format('0,0') +'</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED1).format('0,0') +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE1).format('0,0') +'</td>'+
                 '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YTD).format('0,0') +'</td>'+
                 '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_YTD).format('0,0') +'</td></tr>');
             }
@@ -397,7 +397,7 @@ $(document.body).on('click', '#legend-icon', function(){
                 x: -20 //center
             },
             xAxis: {
-                categories: [ 'June 2015', 'July', 'Aug','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May']
+                categories: [ 'Aug 2015','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May','June','July']
             },
             plotOptions: {
                 column: {
@@ -496,7 +496,7 @@ $(document.body).on('click', '#legend-icon', function(){
                 x: -20 //center
             },
             xAxis: {
-                categories:  [ 'June 2015', 'July', 'Aug','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May']
+               categories: [ 'Aug 2015','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May','June','July']
             },
             plotOptions: {
                 column: {
