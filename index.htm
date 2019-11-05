@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/leaflet_label.css">
-    <link rel="stylesheet" href="assets/css/style.css">
   </head>
 
   <body>
@@ -24,14 +23,15 @@
             <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
             <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
           </div>
-              <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-4px 10px -10px 0;"/></a>
-              <img  style="margin:5px 0px 0px 0px" src="assets/img/bikeped_logo.png"/>   
+              <span><a class="navbar-brand" href="//www.dvrpc.org/" target="_blank"><img src="assets/img/dvrpc.png" alt="DVRPC" style="max-height:40px;margin:-10px 0px 0px 0px"/></a>
+          <!--    <img  style="margin:5px 0px 0px 0px" src="assets/img/divider.png"/>   
+              <img  style="margin:4px 0px 0px 2px" src="assets/img/bikeped_count.png"/>   --> 
+              <img  style="margin:4px 0px 0px 0px" src="assets/img/bikeped_logo.png"/>   
               </span>
         </div>
         <div class="navbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="about-btn"><i class="fa fa-info-circle white"></i>&nbsp;&nbsp;About</a></li>
-           <!--  <li><a href="#" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li> -->
+            <li><a href="#" id="about-btn"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;About</a></li>
             <li><a href="#" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
@@ -41,9 +41,6 @@
 <!-- Start Main Body -->
     <div id="container">
         <div id="sidebar" class="col-sm-8">
-          <!-- <div class="panel panel-primary" id="card">
-              <div class="card-title">Regional Overview</div>
-          </div> -->
              <div class="panel panel-primary" id="regionallist" style="border: medium none;">
                 <div class="sidebar-table">
                 <table class="table table-hover" id="feature-list">
@@ -51,8 +48,8 @@
                     <tr class="table-toprow">
                       <TH COLSPAN=1></TH>
                      <!-- <TH COLSPAN=2 class="table-th">Yesterday<br>(4/29/2016)</TH> -->
-                      <TH COLSPAN=2 class="table-th">Previous Month<br>(7/1-7/31/2016)</TH>
-                      <TH COLSPAN=2 class="table-th">Year-to-date<br>(1/1-7/31/2016)</TH>
+                      <TH COLSPAN=2 class="table-th">Previous Month<br>(<span class="var-month1"></span>)</TH>
+                      <TH COLSPAN=2 class="table-th">Year-to-date<br>(Jan <span class="var-month1-year"></span> through <span class="var-month1"></span>)</TH>
                     </tr>
                     <tr class="table-bottomrow">
                       <th class="table-th1" >Location</th>
@@ -116,7 +113,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Permanent Bicycle and Pedestrian Counts</h4>
+            <h4 class="modal-title" style="color:#2e5c95">Permanent Bicycle and Pedestrian Counters</h4>
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
@@ -126,11 +123,11 @@
             </ul>
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>This map displays data from permanent bicycle and pedestrian counters operated by DVRPC. Trail use counters, located on <a href="http://circuittrails.org" target="_new">Circuit Trails </a>throughout the region, record use by direction and by mode (walking vs. bicycling) continuously throughout the course of a year. This interactive map provides a snapshot of this data in a simple, user-friendly format allowing users to explore counts from throughout the region. More detailed data is available <a href="http://www.dvrpc.org/asp/bikeped/" target="_new">here</a>.<br><br>
+                <p>This map displays data from permanent bicycle and pedestrian counters operated by DVRPC. Trail use counters, located on <a href="https://circuittrails.org" target="_new">Circuit Trails </a>throughout the region, record use by direction and by mode (walking vs. bicycling) continuously throughout the course of a year. This interactive map provides a snapshot of this data in a simple, user-friendly format allowing users to explore counts from throughout the region. More detailed data is available <a href="//www.dvrpc.org/asp/bikeped/" target="_new">here</a>.<br><br>
                   
-                DVRPC also takes short-duration bicycle and pedestrian counts. Data from these counts is available <a href="http://www.dvrpc.org/webmaps/pedbikecounts/" target="_new">here.</a><br><br>
+                DVRPC also takes short-duration bicycle and pedestrian counts. Data from these counts is available <a href="//www.dvrpc.org/webmaps/pedbikecounts/" target="_new">here.</a><br><br>
 
-                The <a href="http://www.williampennfoundation.org" target="_new">William Penn Foundation</a> and <a href="http://pecpa.org" target="_new">Pennsylvania Environmental Council</a> provided generous support for the acquisition of the counters. DVRPC personnel installed and maintain the equipment on an ongoing basis. <br><br>
+                The <a href="https://www.williampennfoundation.org" target="_new">William Penn Foundation</a> and <a href="https://pecpa.org" target="_new">Pennsylvania Environmental Council</a> provided generous support for the acquisition of the counters. DVRPC personnel installed and maintain the equipment on an ongoing basis. <br><br>
                 
                 While every effort is made on the part of DVRPC to provide valid and current information, DVRPC makes no representation nor warranties, express or implied, about the validity of this information and is not to be held responsible for errors in data obtained from this website. 
 
@@ -143,11 +140,11 @@
               <div class="tab-pane fade" id="contact">
                 <p>
                     <b>Office of Travel Monitoring</b><br/>
-                    Scott Brady, Manager <br/>
-                    (215) 238-2814 <br/>
-                    <a href="mailto:sbrady@dvrpc.org">sbrady@dvrpc.org </a> <br/>
+                    Josh Rocks, Manager <br/>
+                    (215) 238-2854 <br/>
+                    <a href="mailto:jrocks@dvrpc.org">jrocks@dvrpc.org </a> <br/>
                 <br/>
-                    Charles Henry, Traffic Counting Supervisor  <br/>
+                    Charles Henry, Associate Manager  <br/>
                     (215) 238-2895 <br/>
                     <a href="mailto:chenry@dvrpc.org">chenry@dvrpc.org</a> <br/>
                 <br/>
@@ -176,38 +173,7 @@
           </div>
           <div class="modal-body">
             <div id="attribution">
-             &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a></div>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <div class="modal fade" id="legendModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Detailed Count Information</h4>
-          </div>
-          <div class="modal-body">
-            <table cellspacing="0" cellpadding="2" rules="all" border="1" id="countlist" style="border-collapse:collapse;">
-      <tr><th scope="col">&nbsp;</th><th scope="col">ID</th><th scope="col">Location</th></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=1" target="_blank">Detail</a></td><td>1</td><td>Chester Valley Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=2" target="_blank">Detail</a></td><td>2</td><td>Schuylkill River Trail (Pawlings Rd)</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=3" target="_blank">Detail</a></td><td>3</td><td>Cynwyd Heritage Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=4" target="_blank">Detail</a></td><td>4</td><td>Wissahickon Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=5" target="_blank">Detail</a></td><td>5</td><td>Schuylkill River Trail (Kelly Dr)</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=6" target="_blank">Detail</a></td><td>6</td><td>Schuylkill River Trail (Schuykill Banks)</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=7" target="_blank">Detail</a></td><td>7</td><td>Port Richmond Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=8" target="_blank">Detail</a></td><td>8</td><td>Lawrence-Hopewell Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=9" target="_blank">Detail</a></td><td>9</td><td>US 202 Parkway Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=10" target="_blank">Detail</a></td><td>10</td><td>Monroe Township trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=11" target="_blank">Detail</a></td><td>11</td><td>Cooper River Trail</td></tr>
-      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=12" target="_blank">Detail</a></td><td>12</td><td>Darby Creek Trail</td></tr>
-      </table>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a></div>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -215,12 +181,10 @@
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js"></script>
     <script src="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="assets/js/numeral.js"></script>
     <script src="assets/js/leaflet.label.js"></script>
     <script src="assets/js/leaflet.viewcenter.js"></script>

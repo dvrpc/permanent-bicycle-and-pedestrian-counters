@@ -1,5 +1,10 @@
     var map, featureList;
 
+     $(document).ready(function() {
+      //OPEN ABOUT DIALOG
+        $('#aboutModal').modal();
+      });
+
     $(window).resize(function() {
         sizeLayerControl();
     });
@@ -45,6 +50,17 @@
         return false;
     });
 
+    function printMonth(arr) {
+        arr = arr.map(function (val) {
+            return val === null ? '' : val;
+        });
+        var first = arr.slice(0, 1);
+        var result = arr.slice(1).map(function (val) {
+            return val.indexOf('Jan') === 0 ? val : val.split(' ')[0];
+        });
+        return first.concat(result);
+    }
+
     function sizeLayerControl() {
         $(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
     }
@@ -65,11 +81,9 @@
     }
 
     /* Basemap Layers */
-    var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    subdomains: 'abcd',
-    maxZoom: 19
-    });
+    var CartoDB_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+        maxZoom: 18, attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
+      });
 
    var Mapbox_Imagery = L.tileLayer(
     'https://api.mapbox.com/styles/v1/crvanpollard/cimpi6q3l00geahm71yhzxjek/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY3J2YW5wb2xsYXJkIiwiYSI6Ii00ZklVS28ifQ.Ht4KwAM3ZUjo1dT2Erskgg', {
@@ -78,9 +92,15 @@
     attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
    /* Overlay Layers */
-       $.getJSON('data/bikeped.js', function(data) {
+    $.getJSON('data/data.aspx', function(data) {
         stations.addData(data);
         map.addLayer(stationsLayer);
+
+        var props = data.features[1].properties;
+
+        $('.var-month1').text(props.MONTH1);
+        $('.var-month1-year').text(props.MONTH1.split(' ')[1]);
+
     });
 
     var DVRPC = L.geoJson(null, {
@@ -99,61 +119,22 @@
         DVRPC.addData(data);
     });
 
-    var circuite = L.geoJson(null, {
-        style: {
-            stroke: true,
-            fillColor: 'none',
-            color: '#8dc63f',
-            weight: 3,
-            fill: true,
-            opacity: 1,
-            fillOpacity: .70,
-            clickable: true
+// The Circuit
+    var circuit = L.geoJson(null, {
+    style: function(feature) {
+        switch (feature.properties.CIRCUIT) {
+        case 'Existing': return {color: "#8dc63f", weight: 3, opacity: 1,};
+        case 'Planned':   return {color: "#329aa7", weight: 3,opacity: 1,};
+        case 'Pipeline':   return {color: "#AF46A4", weight: 3,opacity: 1,};
+        case 'In Progress':   return {color: "#fdae61", weight: 3,opacity: 1,};
+        }
         },
         onEachFeature: function(feature, layer) {
-            layer.bindPopup(feature.properties.NAME);
+            layer.bindPopup(feature.properties.MAIN_TRAIL +'<br><i>'+feature.properties.NAME+'</i>');
         },
     });
-    $.getJSON("data/existing.js", function(data) {
-        circuite.addData(data);
-    });
-
-    var circuitin = L.geoJson(null, {
-        style: {
-            stroke: true,
-            fillColor: 'none',
-            color: '#fdae61',
-            weight: 3,
-            fill: true,
-            opacity: 1,
-            fillOpacity: .70,
-            clickable: true
-        },
-        onEachFeature: function(feature, layer) {
-            layer.bindPopup(feature.properties.NAME);
-        },
-    });
-    $.getJSON("data/inprogress.js", function(data) {
-        circuitin.addData(data);
-    });
-
-    var circuitp = L.geoJson(null, {
-        style: {
-            stroke: true,
-            fillColor: 'none',
-            color: '#008192',
-            weight: 3,
-            fill: true,
-            opacity: 1,
-            fillOpacity: .70,
-            clickable: true
-        },
-        onEachFeature: function(feature, layer) {
-            layer.bindPopup(feature.properties.NAME);
-        },
-    });
-    $.getJSON("data/planned.js", function(data) {
-        circuitp.addData(data);
+    $.getJSON("https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson", function(data) {
+        circuit.addData(data);
     });
 
     function populatepie(e) {
@@ -168,7 +149,7 @@
     var highlight = L.geoJson(null,{
         onEachFeature: function(feature, layer) { 
             if (feature.properties) {
-                layer.bindLabel(feature.properties.Name, {
+                layer.bindLabel(feature.properties.LOCATIONNAME, {
                     className: 'leaflet-label'
                 });
             }
@@ -184,8 +165,6 @@
 
     function style(feature) {
         return {
-         // "color": "#0868AC",
-        //  "color": "#8F70AE",
             "color": "#d53e4f",
             "radius": 10,
             "weight": 0,
@@ -200,7 +179,7 @@
         },
         onEachFeature: function(feature, layer) {
             if (feature.properties) {
-                layer.bindLabel(feature.properties.Name, {
+                layer.bindLabel(feature.properties.LOCATIONNAME, {
                     className: 'leaflet-label'
                 });
                 layer.on({click: identify});
@@ -208,13 +187,13 @@
                 layer.on({click: populatebarchart});
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
                  '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '">'+
-                '<td class="feature-name">' + layer.feature.properties.Name + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' + layer.feature.properties.GEOID + '" target="_blank">Access Detailed Data</a></td>'+
+                '<td class="feature-name">' + layer.feature.properties.LOCATIONNAME + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' + layer.feature.id + '" target="_blank">Access Detailed Data</a></td>'+
               // Ped  Yesterday  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
               // Bike Yesterday '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
                 '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED1).format('0,0') +'</td>'+
                 '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE1).format('0,0') +'</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YTD).format('0,0') +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_YTD).format('0,0') +'</td></tr>');
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YR).format('0,0') +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_YR).format('0,0') +'</td></tr>');
             }
         },
     });
@@ -222,7 +201,7 @@
     map = L.map("map", {
         zoom: 9,
         center: [39.952473, -75.164106],
-        layers: [CartoDB_Positron, DVRPC, highlight, circuite,circuitin,circuitp,stations],
+        layers: [CartoDB_Positron, DVRPC, circuit, highlight,stations],
         zoomControl: false,
         attributionControl: false
     });
@@ -288,7 +267,7 @@
                 legend_body = L.DomUtil.create('div', 'map-legend-items legend-body', legendDiv),
                 legend_bottom = L.DomUtil.create('div', 'map-legend-items legend-bottom', legendDiv);
 
-            legend_body.innerHTML += '<div id="legend-content" class="row"><div class="col-xs-4"><i class="glyphicon glyphicon-minus ct-existing"></i>&nbsp;&nbsp;Existing</div><div class="col-xs-4"><i class="glyphicon glyphicon-minus ct-inprogress"></i>&nbsp;&nbsp;In Progress</div><div class="col-xs-4"><i class="glyphicon glyphicon-minus ct-planned"></i><span>&nbsp;&nbsp;Planned</span></div></div>';
+            legend_body.innerHTML += '<div id="legend-content" class="row"><div class="col-xs-3"><i class="glyphicon glyphicon-minus ct-existing"></i>&nbsp;&nbsp;Existing</div><div class="col-xs-3"><i class="glyphicon glyphicon-minus ct-inprogress"></i>&nbsp;&nbsp;<br>In Progress</div><div class="col-xs-3"><i class="glyphicon glyphicon-minus ct-pipeline"></i><span>&nbsp;&nbsp;Pipeline</span></div><div class="col-xs-3"><i class="glyphicon glyphicon-minus ct-planned"></i><span>&nbsp;&nbsp;Planned</span></div></div>';
             
             legend_top.innerHTML += '<p><b>The Circuit Trails</b>'
             
@@ -328,15 +307,15 @@ $(document.body).on('click', '#legend-icon', function(){
     function identify(e) {
         var layer = e.target;
         var props = layer.feature.properties;
-        var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
-            + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
+     //   var content = "<div class='labelfield2'><b>Station Name</b><br>" + (props.Name)
+     //       + "<br><br><div class='labelfield2'><img src='assets/img/bike_list.png'> <b>Bicycle = </b>" + numeral(props.TT_BIKE).format('0,0') + "<br><br><div class='labelfield2'><img src='assets/img/ped_list.png'> <b>Pedestrian = </b>" + numeral(props.TT_PED).format('0,0') + "<br><br><div class='labelfield2'><b>Total Volume = </b>" + numeral(props.TT_ALL).format('0,0') + "</div>"
         
         var content3 = "<div>Pedestrian Volume by Month"
                         +"</div>"
 
         var content4 = "<div>Bicycle Volume by Month"
                         +"</div>"
-        var content5 = "<div>Station Information for "+(props.Name)
+        var content5 = "<div>Station Information for "+(props.LOCATIONNAME)
                         +"</div>"                
                        
         document.getElementById('cardped').innerHTML = content3; 
@@ -366,11 +345,12 @@ $(document.body).on('click', '#legend-icon', function(){
            //     [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
                 [props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9,props.BIKEIN9,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1],
                 [props.BIKEOUT12,props.BIKEOUT11,props.BIKEOUT10,props.BIKEOUT9,props.BIKEOUT8,props.BIKEOUT7,props.BIKEOUT6,props.BIKEOUT5,props.BIKEOUT4,props.BIKEOUT3,props.BIKEOUT2,props.BIKEOUT1],
-           
+                printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1])
            ])
              updatestackedchart2([
                [props.PEDIN12,props.PEDIN11,props.PEDIN10,props.PEDIN9,props.PEDIN8,props.PEDIN7,props.PEDIN6,props.PEDIN5,props.PEDIN4,props.PEDIN3,props.PEDIN2,props.PEDIN1],
                 [props.PEDOUT12,props.PEDOUT11,props.PEDOUT10,props.PEDOUT9,props.PEDOUT8,props.PEDOUT7,props.PEDOUT6,props.PEDOUT5,props.PEDOUT4,props.PEDOUT3,props.PEDOUT2,props.PEDOUT1],
+                printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1])
             ])
         }
 // colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
@@ -382,11 +362,13 @@ $(document.body).on('click', '#legend-icon', function(){
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:200,
+                height:220,
+                marginBottom: 90,
                 backgroundColor: '#fef0d9'
             },
             colors: 
                 ['#e66101','#fee0b6']
+    
             ,
             credits: {
                 enabled: false
@@ -397,7 +379,7 @@ $(document.body).on('click', '#legend-icon', function(){
                 x: -20 //center
             },
             xAxis: {
-                categories: [ 'Aug 2015','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May','June','July']
+                categories: Values[2]
             },
             plotOptions: {
                 column: {
@@ -427,8 +409,8 @@ $(document.body).on('click', '#legend-icon', function(){
             legend: {
                 align: 'right',
                 x: 0,
-                verticalAlign: 'top',
-                y: 0,
+                verticalAlign: 'bottom',
+                y: 10,
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
@@ -483,7 +465,8 @@ $(document.body).on('click', '#legend-icon', function(){
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,//null,
                 plotShadow: true,
-                height:200,
+                height:220,
+                marginBottom: 90,
                 backgroundColor: '#f2f0f7'
             },
              colors: ['#5e3c99','#998ec3'],
@@ -496,7 +479,7 @@ $(document.body).on('click', '#legend-icon', function(){
                 x: -20 //center
             },
             xAxis: {
-               categories: [ 'Aug 2015','Sep','Oct','Nov','Dec','Jan 2016','Feb','March','April','May','June','July']
+               categories: Values[2]
             },
             plotOptions: {
                 column: {
@@ -526,8 +509,8 @@ $(document.body).on('click', '#legend-icon', function(){
             legend: {
                 align: 'right',
                 x: 0,
-                verticalAlign: 'top',
-                y: 0,
+                verticalAlign: 'bottom',
+                y: 10,
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
@@ -568,10 +551,23 @@ $(document.body).on('click', '#legend-icon', function(){
         options.series[0].data = pedindata;
         options.series[1].data = pedoutdata;
         chart = new Highcharts.Chart(options)
+
+     //    $('.highcharts-xaxis-labels text').on('click', function () {
+     //    console.log($(this).text());
+     //    });
+
+         $('.highcharts-xaxis-labels text').on("click", function(d, i) {
+            console.log($(this).text());
+            $('#aboutModal').one('shown.bs.modal', function() {
+                $('#legendTabs a[href="#RideScoreTab"]').tab('show');
+            }).modal('show');
+        });
      //    console.log(pedindata);
      //    console.log(bikeindata);
      //    console.log(bikeindata);
     }
+
+
 
     /* Typeahead search functionality */
     $(document).one("ajaxStop", function() {
