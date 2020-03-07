@@ -122,7 +122,7 @@
 // The Circuit
     var circuit = L.geoJson(null, {
     style: function(feature) {
-        switch (feature.properties.CIRCUIT) {
+        switch (feature.properties.circuit) {
         case 'Existing': return {color: "#8dc63f", weight: 3, opacity: 1,};
         case 'Planned':   return {color: "#329aa7", weight: 3,opacity: 1,};
         case 'Pipeline':   return {color: "#AF46A4", weight: 3,opacity: 1,};
@@ -130,10 +130,10 @@
         }
         },
         onEachFeature: function(feature, layer) {
-            layer.bindPopup(feature.properties.MAIN_TRAIL +'<br><i>'+feature.properties.NAME+'</i>');
+            layer.bindPopup(feature.properties.main_trail +'<br><i>'+feature.properties.name+'</i>');
         },
     });
-    $.getJSON("https://dvrpc-dvrpcgis.opendata.arcgis.com/datasets/c830cdb70f654c36bfd88eb7ed4bc424_0.geojson", function(data) {
+    $.getJSON("https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Circuit_Trails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=pgeojson", function(data) {
         circuit.addData(data);
     });
 
