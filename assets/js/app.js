@@ -133,7 +133,7 @@
             layer.bindPopup(feature.properties.main_trail +'<br><i>'+feature.properties.name+'</i>');
         },
     });
-    $.getJSON("https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/CircuitTrails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=pgeojson", function(data) {
+    $.getJSON("https://arcgis.dvrpc.org/portal/rest/services/Transportation/CircuitTrails/FeatureServer/0/query?where=1%3D1&outFields=*&geometryPrecision=5&outSR=4326&f=geojson", function(data) {
         circuit.addData(data);
     });
 
