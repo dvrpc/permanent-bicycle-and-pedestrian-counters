@@ -185,15 +185,29 @@
                 layer.on({click: identify});
               //  layer.on({click: populatepie});
                 layer.on({click: populatebarchart});
+                 //   console.log(marker.properties);
+                if (layer.feature.properties.PED1 > 0){ var PEDM = numeral(layer.feature.properties.PED1).format('0,0')  ;}
+                else { var PEDM = 'N/A'}
+
+                if (layer.feature.properties.BIKE1 > 0){ var BIKEM = numeral(layer.feature.properties.BIKE1).format('0,0')  ;}
+                else { var BIKEM = 'N/A'}
+
+                if (layer.feature.properties.PED_YR > 0){ var PEDYR = numeral(layer.feature.properties.PED_YR).format('0,0')  ;}
+                else { var PEDYR = 'N/A'}
+
+                if (layer.feature.properties.BIKE_YR > 0){ var BIKEYR = numeral(layer.feature.properties.BIKE_YR).format('0,0')  ;}
+                else { var BIKEYR = 'N/A'}
+
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
                  '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '">'+
                 '<td class="feature-name">' + layer.feature.properties.LOCATIONNAME + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' + layer.feature.id + '" target="_blank">Access Detailed Data</a></td>'+
               // Ped  Yesterday  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
               // Bike Yesterday '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED1).format('0,0') +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE1).format('0,0') +'</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YR).format('0,0') +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_YR).format('0,0') +'</td></tr>');
+              //  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED1).format('0,0') +'</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+ PEDM +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ BIKEM +'</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+ PEDYR +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ BIKEYR +'</td></tr>');
             }
         },
     });
