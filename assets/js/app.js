@@ -26,7 +26,9 @@
     //    $("tr").css('color', 'black');
     // set colour of row raising the click event 
      //   $(this).css('background-color', '#00FFFF');
-        $(this).css('background-color','rgba(0, 255, 255, 0.6)');
+    //  CYAN
+        // $(this).css('background-color','rgba(0, 255, 255, 0.6)');
+        $(this).css('background-color','rgba( 255, 246, 136, 0.6)');
     //    $(this).css('color', 'white');
     }
     
@@ -158,7 +160,7 @@
     
     var highlightStyle = {
         stroke: false,
-        fillColor: "#00FFFF",
+        fillColor: "#FFDA00",
         fillOpacity: 0.9,
         radius: 10
     };
