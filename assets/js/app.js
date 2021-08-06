@@ -198,9 +198,19 @@
                 if (layer.feature.properties.BIKE_YR > 0){ var BIKEYR = numeral(layer.feature.properties.BIKE_YR).format('0,0')  ;}
                 else { var BIKEYR = 'N/A'}
 
+                var trail_id= [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,23,24,25];
+
+                if( trail_id.includes(layer.feature.id) ){ var TCT = '<img class="TCT-tag" src="https://www.dvrpc.org/webmaps/TheCircuit/img/logo_stacked.png" alt="The Circuit Trails"/>'  ;}
+                else { var TCT = ''}
+
+
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
                  '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '">'+
-                '<td class="feature-name">' + layer.feature.properties.LOCATIONNAME + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' + layer.feature.id + '" target="_blank">Access Detailed Data</a></td>'+
+                '<td class="feature-name">' + layer.feature.properties.LOCATIONNAME 
+                + TCT
+              //  + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' 
+                //+ layer.feature.id + '" target="_blank">Access Detailed Data</a>'
+                +'</td>'+
               // Ped  Yesterday  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
               // Bike Yesterday '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
               //  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED1).format('0,0') +'</td>'+
@@ -359,12 +369,14 @@ $(document.body).on('click', '#legend-icon', function(){
            //     [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
                 [props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9,props.BIKEIN9,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1],
                 [props.BIKEOUT12,props.BIKEOUT11,props.BIKEOUT10,props.BIKEOUT9,props.BIKEOUT8,props.BIKEOUT7,props.BIKEOUT6,props.BIKEOUT5,props.BIKEOUT4,props.BIKEOUT3,props.BIKEOUT2,props.BIKEOUT1],
-                printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1])
+                printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1]),
+                [props.INDIR,props.OUTDIR]
            ])
              updatestackedchart2([
                [props.PEDIN12,props.PEDIN11,props.PEDIN10,props.PEDIN9,props.PEDIN8,props.PEDIN7,props.PEDIN6,props.PEDIN5,props.PEDIN4,props.PEDIN3,props.PEDIN2,props.PEDIN1],
                 [props.PEDOUT12,props.PEDOUT11,props.PEDOUT10,props.PEDOUT9,props.PEDOUT8,props.PEDOUT7,props.PEDOUT6,props.PEDOUT5,props.PEDOUT4,props.PEDOUT3,props.PEDOUT2,props.PEDOUT1],
-                printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1])
+                printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1]),
+                [props.INDIR,props.OUTDIR]
             ])
         }
 // colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
@@ -443,11 +455,10 @@ $(document.body).on('click', '#legend-icon', function(){
                     name:'East Bound',
                     data: []
                 },
-                  {
+                   {
                     name:'West Bound',
                     data: []
                 }
-               
             ]
         };
         
@@ -465,6 +476,9 @@ $(document.body).on('click', '#legend-icon', function(){
         
         options.series[0].data = bikeindata;
         options.series[1].data = bikeoutdata;
+
+        options.series[0].name = Values[3][0];
+        options.series[1].name = Values[3][1];
         chart = new Highcharts.Chart(options)
      //    console.log(pedindata);
      //    console.log(bikeindata);
@@ -564,6 +578,9 @@ $(document.body).on('click', '#legend-icon', function(){
         //    
         options.series[0].data = pedindata;
         options.series[1].data = pedoutdata;
+        
+        options.series[0].name = Values[3][0];
+        options.series[1].name = Values[3][1];
         chart = new Highcharts.Chart(options)
 
      //    $('.highcharts-xaxis-labels text').on('click', function () {

@@ -40,9 +40,13 @@
 
 <!-- Start Main Body -->
     <div id="container">
-        <div id="sidebar" class="col-sm-7">
+        <div id="sidebar" class="col-sm-6">
              <div class="panel panel-primary" id="regionallist" style="border: medium none;">
                 <div class="sidebar-table">
+                  <div class="row" id="datadisclaimer">N/A - Data Not Available.<br><br>
+                    D&L Canal Trail (Tinicum Park) is operated by <a href="https://delawareandlehigh.org/" target="_new">Delaware & Lehigh National Heritage Area</a>.<br><br>
+                    Data is reported by automated cyclist and pedestrian counting equipment and is not adjusted to correct errors due to equipment malfunction or failure. Select station locations are recording data for only one type of mode. Please review disclaimer or contact DVRPC for more info. 
+                  </div> 
                 <table class="table table-hover" id="feature-list">
                   <thead >
                     <tr class="table-toprow">
@@ -67,35 +71,40 @@
              </div> 
 
             <div class="row" id="datadisclaimer">N/A - Data Not Available.<br><br>
-            D&L Canal Trail (Tinicum Park) is operated by D&L Nat. Heritage Area.<br><br>
-            Data is reported by automated cyclist and pedestrian counting equipment and is not adjusted to correct errors due to equipment malfunction or failure. Select station locations are recording data for only one type of mode. Please review disclaimer or contact DVRPC for more info. </div>  
-
-           <div class="row" id="barcharts"> 
-             <div class="panel panel-primary" id="card">
-             <div class="card-title">Station Information</div>
-             </div>
-            <div id="cardclick">
-             <h2>Click on location name for month-by-month data</h2>
-            </div>
-            <div class="col-sm-6">
-            <div class="panel panel-primary" id="cardpedpanel">
-            <div class="panel-heading" id="cardped"></div>
-            <div id="Monthly2" class="barchart"></div>
-            </div>
-            </div>
-            <div class="col-sm-6" >
-            <div class="panel panel-primary" id="cardbikepanel">
-            <div class="panel-heading" id="cardbike"></div>
-            <div id="Monthly" class="barchart"></div>
-            </div>
-            </div>
-          </div>
-    
-       
+            D&L Canal Trail (Tinicum Park) is operated by <a href="https://delawareandlehigh.org/" target="_new">Delaware & Lehigh National Heritage Area</a>.<br><br>
+            Data is reported by automated cyclist and pedestrian counting equipment and is not adjusted to correct errors due to equipment malfunction or failure. Select station locations are recording data for only one type of mode. Please review disclaimer or contact DVRPC for more info. 
+          </div>  
       </div>
 
-      <div id="sidebar2" class="col-sm-5">
+      <div id="sidebar2" class="col-sm-6">
+     
+
+      <div class="row" id="map-section">
         <div id="map"></div>
+      </div> 
+      <div class="row" id="barcharts"> 
+        <div class="panel panel-primary" id="card">
+        <div class="card-title">Station Information</div>
+        </div>
+       <div id="cardclick">
+        <h2>Select location name for month-by-month data</h2>
+       </div>
+       <div class="col-sm-6">
+       <div class="panel panel-primary" id="cardpedpanel">
+       <div class="panel-heading" id="cardped"></div>
+       <div id="Monthly2" class="barchart"></div>
+       </div>
+       </div>
+       <div class="col-sm-6" >
+       <div class="panel panel-primary" id="cardbikepanel">
+       <div class="panel-heading" id="cardbike"></div>
+       <div id="Monthly" class="barchart"></div>
+       </div>
+       </div>
+    </div>
+
+   
+
       </div>  
 
  </div>     
@@ -125,14 +134,10 @@
             </ul>
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>This map displays data from permanent bicycle and pedestrian counters operated by DVRPC. Trail use counters, located on <a href="https://circuittrails.org" target="_new">Circuit Trails </a>throughout the region, record use by direction and by mode (walking vs. bicycling) continuously throughout the course of a year. This interactive map provides a snapshot of this data in a simple, user-friendly format allowing users to explore counts from throughout the region. More detailed data is available <a href="//www.dvrpc.org/asp/bikeped/" target="_new">here</a>.<br><br>
-                  
-                DVRPC also takes short-duration bicycle and pedestrian counts. Data from these counts is available <a href="https://dvrpcgis.maps.arcgis.com/apps/webappviewer/index.html?id=3522f0101f3e44a588c6d8e13ec1bf68" target="_new">here.</a><br><br>
-
-                The <a href="https://www.williampennfoundation.org" target="_new">William Penn Foundation</a> and <a href="https://pecpa.org" target="_new">Pennsylvania Environmental Council</a> provided generous support for the acquisition of the counters. DVRPC personnel installed and maintain the equipment on an ongoing basis. <br><br>
+                <p>DVRPC uses permanently-installed counters to document use of the region’s Circuit Trails network as well as on-road bicycle facilities. This interactive map provides a snapshot of this data in a simple, user-friendly format allowing users to explore counts from throughout the region. DVRPC also takes short-duration bicycle and pedestrian counts. Data from these counts is available <a href="https://www.dvrpc.org/webmaps/trafficcounts/" target="_new">here.</a><br><br>
+                DVRPC personnel installed and maintain the equipment on an ongoing basis. Additional funding for acquisition of the counters was provided by the <a href="https://www.williampennfoundation.org" target="_new">William Penn Foundation</a>, <a href="https://pecpa.org" target="_new">Pennsylvania Environmental Council</a>, and <a href="https://www.schuylkillbanks.org/about" target="_new">Schuylkill River Development Corporation</a>.  
                 
-                While every effort is made on the part of DVRPC to provide valid and current information, DVRPC makes no representation nor warranties, express or implied, about the validity of this information and is not to be held responsible for errors in data obtained from this website. 
-
+                While every effort is made on the part of DVRPC to provide valid and current information, DVRPC makes no representation nor warranties, express or implied, about the validity of this information and is not to be held responsible for errors in data obtained from this website.
                 </p>
               </div>
               <div id="disclaimer" class="tab-pane fade text-danger">
@@ -151,9 +156,14 @@
                     <a href="mailto:chenry@dvrpc.org">chenry@dvrpc.org</a> <br/>
                 <br/>
                 <b>Office of Environmental Planning</b><br/>
-                    Shawn Megill Legendre, Assistant Manager, Regional Trails Program <br/>
+                    Shawn Megill Legendre, Manager, Regional Trails Program <br/>
                     (215) 238-2934 <br/>
                     <a href="mailto:slegendre@dvrpc.org">slegendre@dvrpc.org </a> <br/>
+                <br/>
+                <b>Office of Transit, Bicycle, and Pedestrian Planning</b><br/>
+                  Cassidy Boulan, Senior Transportation Planner <br/>
+                    (215) 238-2832 <br/>
+                    <a href="mailto:cboulane@dvrpc.org">cboulane@dvrpc.org </a> <br/>
                 <br/>
                 <b>DVRPC Main Number:</b> (215) 592-1800
                 </p>
