@@ -30,6 +30,7 @@ input[type="radio"], input[type="checkbox"] {
   top: 10px;
   padding-bottom: 15px;
   overflow: auto;
+  height: calc(50vw - 50px);
 }
 #map {
   height:100%;
@@ -37,7 +38,8 @@ input[type="radio"], input[type="checkbox"] {
   margin-top:10px;
 }
 #map-section{
-  height: 400px;
+  /* height: 400px; */
+  height: calc(35vw - 50px);
 }
 #barcharts{
   margin-top:15px;
@@ -206,45 +208,7 @@ color: #b0b0b0;
 .leaflet-control-layers-list input[type="radio"], input[type="checkbox"] {
   margin: 2px;
 }
-.table {
-  margin-bottom: 0px;
-  font-size: 12px;
-}
-.table-toprow{
-  border-bottom: 3px solid #1D3C61;
-  
-}
-.table-th{
-  background-color: #1D3C61;
-  color :#FFFFFF;
-  vertical-align: middle;
-  text-align: center;
-  border-left: 2px solid #FFFFFF;
-  border-right: 2px solid #FFFFFF;
-}
-.table-thb{
-  background-color: #1D3C61;
-  color :#FFFFFF;
-  vertical-align: middle;
-  text-align: center;
-  border-right: 2px solid #FFFFFF;
-}
-.table-thp{
-  background-color: #1D3C61;
-  color :#FFFFFF;
-  vertical-align: middle;
-  text-align: center;
-  border-left: 2px solid #FFFFFF;
-}
-.table-th1{
-  background-color: #1D3C61;
-  color :#FFFFFF;
-  vertical-align: middle;
-}
-.table-ped{
- border-left: 2px solid #666666;
- border-right: 1px solid #D3D3D3;
-}
+
 .navbar .navbar-brand {
   font-weight: bold;
   font-size: 25px;
@@ -290,9 +254,54 @@ color: #b0b0b0;
   max-height: 300px;
   overflow: auto;
 }
+/* Table Start */
+.table {
+  margin-bottom: 0px;
+  font-size:.9vw;
+}
+.table-toprow{
+  border-bottom: 3px solid #1D3C61;
+  
+}
+.table-th{
+  background-color: #1D3C61;
+  color :#FFFFFF;
+  vertical-align: middle;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+  border-right: 2px solid #FFFFFF;
+}
+.table-thb{
+  background-color: #1D3C61;
+  color :#FFFFFF;
+  vertical-align: middle;
+  text-align: center;
+  border-right: 2px solid #FFFFFF;
+}
+.table-thp{
+  background-color: #1D3C61;
+  color :#FFFFFF;
+  vertical-align: middle;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+.table-th1{
+  background-color: #1D3C61;
+  color :#FFFFFF;
+  vertical-align: middle;
+}
+.table-ped{
+ border-left: 2px solid #666666;
+ border-right: 1px solid #D3D3D3;
+}
+/* Table End */
+
 @media (max-width: 992px) {
   .navbar .navbar-brand {
     font-size: 18px;
+  }
+  .table {
+    font-size: 32px;
   }
 }
 @media (max-width: 767px){
@@ -307,6 +316,9 @@ color: #b0b0b0;
   }
   .dropdown-menu a i{
     color: #FFFFFF;
+  }
+  .table {
+    font-size: 15px;
   }
 }
 /* Print Handling */

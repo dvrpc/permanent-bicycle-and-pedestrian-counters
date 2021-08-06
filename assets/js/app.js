@@ -207,7 +207,7 @@
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
                  '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '">'+
                 '<td class="feature-name">' + layer.feature.properties.LOCATIONNAME 
-                + TCT
+              //  + TCT
               //  + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' 
                 //+ layer.feature.id + '" target="_blank">Access Detailed Data</a>'
                 +'</td>'+
