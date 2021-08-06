@@ -92,7 +92,7 @@
     attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
    /* Overlay Layers */
-    $.getJSON('data/data.aspx', function(data) {
+    $.getJSON('https://www.dvrpc.org/webmaps/PermBikePed/data/data.aspx', function(data) {
         stations.addData(data);
         map.addLayer(stationsLayer);
 
@@ -115,7 +115,7 @@
             clickable: false
         },
     });
-    $.getJSON("data/cnty.js", function(data) {
+    $.getJSON("https://arcgis.dvrpc.org/portal/rest/services/Boundaries/CountyBoundaries/FeatureServer/0/query?where=DVRPC_REG%3D%27Yes%27&outFields=STATE%2C+CO_NAME&outSR=4326&f=geojson", function(data) {
         DVRPC.addData(data);
     });
 
