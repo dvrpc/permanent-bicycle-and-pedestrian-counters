@@ -216,10 +216,10 @@
               // Ped  Yesterday  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
               // Bike Yesterday '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
               //  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED1).format('0,0') +'</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+ PEDM +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ BIKEM +'</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+ PEDYR +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ BIKEYR +'</td></tr>');
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+ BIKEM +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ PEDM +'</td>'+
+                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+ BIKEYR +'</td>'+
+                '<td style="vertical-align: middle;text-align:center">'+ PEDYR +'</td></tr>');
             }
         },
     });
@@ -347,10 +347,24 @@ $(document.body).on('click', '#legend-icon', function(){
         document.getElementById('cardped').innerHTML = content3; 
         document.getElementById('cardbike').innerHTML = content4;
         document.getElementById('card').innerHTML = content5;
-        $('#cardbikepanel').show();
-        $('#cardpedpanel').show();
-        $('#card').show();
-        $('#cardclick').hide();
+       
+        if (props.LOCATIONNAME == 'Pine St'||props.LOCATIONNAME == 'Spruce St') {
+            // alert ("nope");
+            $('#cardbikepanel').show();
+            $('#cardpedpanel').hide();
+            $('#card').show();
+            $('#cardclick').hide();
+           } else {
+            $('#cardbikepanel').show();
+            $('#cardpedpanel').show();
+            $('#card').show();
+            $('#cardclick').hide();
+           }
+
+        // $('#cardbikepanel').show();
+        // $('#cardpedpanel').show();
+        // $('#card').show();
+        // $('#cardclick').hide();
         
         highlightRow.call(document.getElementById(L.stamp(layer)))
          
