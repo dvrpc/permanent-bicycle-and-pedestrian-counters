@@ -94,7 +94,7 @@
     attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
    /* Overlay Layers */
-    $.getJSON('https://www.dvrpc.org/webmaps/PermBikePed/data/data.aspx', function(data) {
+    $.getJSON('https://www.dvrpc.org/asp/permbikepedapi/data.aspx', function(data) {
         stations.addData(data);
         map.addLayer(stationsLayer);
 
