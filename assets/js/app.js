@@ -383,7 +383,7 @@ $(document.body).on('click', '#legend-icon', function(){
             updatestackedchart([
            //     [props.BIKEIN1,props.BIKEIN2,props.BIKEIN3,props.BIKEIN4,props.BIKEIN5,props.BIKEIN6,props.BIKEIN7,props.BIKEIN8,props.BIKEIN9,props.BIKEIN10,props.BIKEIN11,props.BIKEIN12],
            //     [props.BIKEOUT1,props.BIKEOUT2,props.BIKEOUT3,props.BIKEOUT4,props.BIKEOUT5,props.BIKEOUT6,props.BIKEOUT7,props.BIKEOUT8,props.BIKEOUT9,props.BIKEOUT10,props.BIKEOUT11,props.BIKEOUT12],
-                [props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9,props.BIKEIN9,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1],
+                [props.BIKEIN12,props.BIKEIN11,props.BIKEIN10,props.BIKEIN9,props.BIKEIN7,props.BIKEIN6,props.BIKEIN5,props.BIKEIN4,props.BIKEIN3,props.BIKEIN2,props.BIKEIN1],
                 [props.BIKEOUT12,props.BIKEOUT11,props.BIKEOUT10,props.BIKEOUT9,props.BIKEOUT8,props.BIKEOUT7,props.BIKEOUT6,props.BIKEOUT5,props.BIKEOUT4,props.BIKEOUT3,props.BIKEOUT2,props.BIKEOUT1],
                 printMonth([props.MONTH12, props.MONTH11, props.MONTH10, props.MONTH9, props.MONTH8, props.MONTH7, props.MONTH6, props.MONTH5, props.MONTH4, props.MONTH3, props.MONTH2, props.MONTH1]),
                 [props.INDIR,props.OUTDIR]
