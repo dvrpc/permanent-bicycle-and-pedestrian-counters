@@ -107,7 +107,7 @@ var Mapbox_Imagery = L.tileLayer(
 );
 /* Overlay Layers */
 $.getJSON(
-  "https://www.dvrpc.org/asp/permbikepedapi/data.aspx",
+  "https://apis.dvrpc.org/internal/bikeped/permbikeped/geojson",
   function (data) {
     stations.addData(data);
     map.addLayer(stationsLayer);
@@ -471,6 +471,22 @@ function populatebarchart(e) {
   // Will TsayMod
   var props = layer.feature.properties;
   // draws Bike on top
+  var months = [
+    props.MONTH12,
+    props.MONTH11,
+    props.MONTH10,
+    props.MONTH9,
+    props.MONTH8,
+    props.MONTH7,
+    props.MONTH6,
+    props.MONTH5,
+    props.MONTH4,
+    props.MONTH3,
+    props.MONTH2,
+    props.MONTH1,
+  ].map(function (m) {
+    return m && typeof m === "string" ? m : "Unknown";
+  });
   updatestackedchart([
     [
       props.BIKEIN12,
@@ -500,22 +516,10 @@ function populatebarchart(e) {
       props.BIKEOUT2,
       props.BIKEOUT1,
     ],
-    printMonth([
-      props.MONTH12,
-      props.MONTH11,
-      props.MONTH10,
-      props.MONTH9,
-      props.MONTH8,
-      props.MONTH7,
-      props.MONTH6,
-      props.MONTH5,
-      props.MONTH4,
-      props.MONTH3,
-      props.MONTH2,
-      props.MONTH1,
-    ]),
+    months,
     [props.INDIR, props.OUTDIR],
   ]);
+
   updatestackedchart2([
     [
       props.PEDIN12,
@@ -545,24 +549,11 @@ function populatebarchart(e) {
       props.PEDOUT2,
       props.PEDOUT1,
     ],
-    printMonth([
-      props.MONTH12,
-      props.MONTH11,
-      props.MONTH10,
-      props.MONTH9,
-      props.MONTH8,
-      props.MONTH7,
-      props.MONTH6,
-      props.MONTH5,
-      props.MONTH4,
-      props.MONTH3,
-      props.MONTH2,
-      props.MONTH1,
-    ]),
+    months,
     [props.INDIR, props.OUTDIR],
   ]);
 }
-// colors: ['#e66101','#fee0b6', '#5e3c99','#998ec3']
+
 function updatestackedchart(Values) {
   var options = {
     chart: {
@@ -628,17 +619,20 @@ function updatestackedchart(Values) {
     },
     tooltip: {
       formatter: function () {
-        return (
-          "<b>" +
-          this.x +
-          "</b><br/>" +
-          this.series.name +
-          ": " +
-          this.y +
-          "<br/>" +
-          "Total: " +
-          this.point.stackTotal
-        );
+        // Safely read categories
+        const chart = this.series && this.series.chart ? this.series.chart : {};
+        const xAxis = chart.xAxis && chart.xAxis[0] ? chart.xAxis[0] : null;
+        const categories = xAxis ? xAxis.categories : [];
+        const label =
+          this.point?.name ||
+          categories[this.point?.index] ||
+          this.key ||
+          this.x ||
+          "Unknown";
+
+        return `<b>${label}</b><br/>
+            ${this.series.name}: ${numeral(this.y).format("0,0")}<br/>
+            Total: ${numeral(this.point.stackTotal).format("0,0")}`;
       },
     },
     series: [
@@ -700,6 +694,7 @@ function updatestackedchart2(Values) {
       x: -20, //center
     },
     xAxis: {
+      type: "category",
       categories: Values[2],
     },
     plotOptions: {
@@ -742,17 +737,20 @@ function updatestackedchart2(Values) {
     },
     tooltip: {
       formatter: function () {
-        return (
-          "<b>" +
-          this.x +
-          "</b><br/>" +
-          this.series.name +
-          ": " +
-          this.y +
-          "<br/>" +
-          "Total: " +
-          this.point.stackTotal
-        );
+        // Safely read categories
+        const chart = this.series && this.series.chart ? this.series.chart : {};
+        const xAxis = chart.xAxis && chart.xAxis[0] ? chart.xAxis[0] : null;
+        const categories = xAxis ? xAxis.categories : [];
+        const label =
+          this.point?.name ||
+          categories[this.point?.index] ||
+          this.key ||
+          this.x ||
+          "Unknown";
+
+        return `<b>${label}</b><br/>
+            ${this.series.name}: ${numeral(this.y).format("0,0")}<br/>
+            Total: ${numeral(this.point.stackTotal).format("0,0")}`;
       },
     },
     series: [
