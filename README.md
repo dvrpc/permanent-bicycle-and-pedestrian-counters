@@ -1,3 +1,6 @@
+# This application is deprecated, please view
+https://github.com/dvrpc/permanent-bike-ped-counters-v2
+
 # PermBikePed
 DVRPC uses permanently-installed counters to document use of the region’s Circuit Trails network as well as on-road bicycle facilities. This interactive map provides a snapshot of this data in a simple, user-friendly format allowing users to explore counts from throughout the region. DVRPC also takes short-duration bicycle and pedestrian counts. Data from these counts is available [https://www.dvrpc.org/webmaps/trafficcounts/](here).
 
